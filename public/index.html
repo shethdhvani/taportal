@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TaPortal">
+
+<head>
+
+    <meta charset="UTF-8" >
+
+    <!-- Meta tags for making website for mobile-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Making it Safari Friendly-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--Disabling user pinch and default to 25% size-->
+    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+
+    <title>TA Portal</title>
+
+    <!-- BootStrap style sheet-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <!--IMP-->
+    <!-- Load jQuery before Angular for DOM manipulation-->
+
+
+    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+    <link href="css/style.css" rel="stylesheet"/>
+
+
+
+
+    <!--Angular Modules-->
+    <!--Angular Module. Deals with centralized routing mechanism-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <!--Routing Module-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+
+    <!--App.js-->
+    <script src="app.js"></script>
+
+
+    <!--config.js. What do we wanna show when we click things. configure-->
+    <!-- this is the centralized single maintenance point-->
+    <script src="config.js"></script>
+
+
+    <!--Controllers-->
+
+    <!--User-->
+    <script src="views/user/login.controller.client.js"></script>
+    <script src="views/user/sregister.controller.client.js"></script>
+    <script src="views/user/sprofile.controller.client.js"></script>
+
+    <!--Services-->
+    <script src="services/user.service.client.js"></script>
+
+</head>
+
+<body>
+    <div ng-view></div>
+</body>
+
+</html>
