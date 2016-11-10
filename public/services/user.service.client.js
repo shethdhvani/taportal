@@ -39,7 +39,7 @@
                 email: email,
                 usertype: usertype
             };
-         
+
             return $http.post("/api/register",user);
 
         }
@@ -99,6 +99,6 @@
         }
 
 
-        
+
     }
 })();
