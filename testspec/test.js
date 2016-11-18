@@ -32,6 +32,17 @@ describe('users service', function() {
             })
     });
 
+    //dhvani start
+    it('should get all users error', function (done) {
+        chai.request(server)
+            .get('/api/findallusers/789')
+            .end(function(err, res){
+                res.should.have.status(404);
+                // res.body.error.should.equal(false);
+                done();
+            })
+    });
+    //dhvani end
 
     it('user should be able to login', function (done) {
         chai.request(server)
