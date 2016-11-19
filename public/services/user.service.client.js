@@ -21,8 +21,8 @@
             deleteUser: deleteUser,
             login: login,
             logout: logout,
-            findUserByUsername: findUserByUsername
-
+            findUserByUsername: findUserByUsername,
+            findAllUsers: findAllUsers
         };
 
         return api;
@@ -39,11 +39,15 @@
                 email: email,
                 usertype: usertype
             };
-
+         
             return $http.post("/api/register",user);
 
         }
 
+        function findAllUsers() {
+            var url = "/api/findallusers";
+            return $http.get(url);
+        }
 
         function loggedIn() {
             return $http.get("/api/loggedIn");
@@ -99,6 +103,6 @@
         }
 
 
-
+        
     }
 })();
