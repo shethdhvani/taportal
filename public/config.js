@@ -11,6 +11,90 @@
     function Config($routeProvider) {
         $routeProvider
 
+
+
+
+        // Student Profile
+            .when("/fprofile",{
+                templateUrl :"views/faculty/fprofile.view.client.html",
+                controller: "FProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+            .when("/aconsole",{
+                templateUrl: "views/admin/aconsole.view.client.html",
+                controller: "AConsoleController",
+                controllerAs: "model",
+                resolve:{
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+
+            // Admin profile
+            .when("/aprofile",{
+                templateUrl :"views/admin/aprofile.view.client.html",
+                controller: "AProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+            .when("/manageusers",{
+                templateUrl: "views/admin/manageusers.view.client.html",
+                controller: "ManageUsersController",
+                controllerAs: "model",
+                resolve:{
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+            .when("/addcoursesandsemesters",{
+                templateUrl: "views/admin/managecoursesandsemesters.view.client.html",
+                controller: "ManageCoursesSemestersController",
+                controllerAs: "model",
+                resolve:{
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+            .when("/createandmanageapplications", {
+                templateUrl : "views/admin/createandmanagepositions.view.client.html",
+                controller: "ManageCreatePositionsController",
+                controllerAs : "model",
+                resolve:{
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+
+
+            // Student Edit Profile
+            .when("/aeditprofile",{
+                templateUrl :"views/admin/aprofileedit.view.client.html",
+                controller: "AEditProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+            // Student Register
+            .when("/fregister",{
+                templateUrl: "views/faculty/fregsiter.view.client.html",
+                controller: "FRegisterController",
+                controllerAs: "model"
+                // ,
+                // resolve: {
+                //     freeView : freeView
+                // }
+            })
+
+
             // Student Profile
             .when("/sprofile",{
                 templateUrl :"views/user/sprofile.view.client.html",
@@ -20,6 +104,17 @@
                     loggedIn: checkLoggedIn
                 }
             })
+
+            // Student Edit Profile
+            .when("/seditprofile",{
+                templateUrl :"views/user/sprofileedit.view.client.html",
+                controller: "SEditProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+
 
             // Student Register
             .when("/sregister",{
