@@ -18,6 +18,8 @@ var app = express();
 exports.app = app;
 chai.use(chaiHttp);
 
+var pid = "";
+
 describe('TestsForPositions', function() {
 
     it('should find all positions', function (done) {
@@ -57,7 +59,7 @@ describe('TestsForPositions', function() {
             .get('/api/findallpositions')
             .end(function(err, res){
                 chai.request(server)
-                    .put('/api/position/' + res.body[0]._id)
+                    .put('/api/position/' + res.body._id)
                     .send({'course' : 'testCourse2', 'semester': 'test sem2', 'number' : '20',
                         'professor' : 'test prof updated', 'deadline' : '2/1/2016'})
                     .end(function (error, response) {
@@ -69,27 +71,33 @@ describe('TestsForPositions', function() {
 
     });
 
+    
 
     it('should find position by positionid', function (done) {
+
         chai.request(server)
-            .get('/api/findallpositions')
+            .post('/api/position')
+            .send({'course' : 'testCourse3', 'semester': 'test sem3', 'number' : '25',
+                'professor' : 'test prof3', 'deadline' : '2/2/2016'})
             .end(function (err, res) {
+                pid = res.body._id;
                 chai.request(server)
-                    .get('/api/position/' + res.body[0]._id)
-                    .end(function (error, response) {
-                        response.should.have.status(200);
+                    .get('/api/position/' + pid)
+                    .end(function (err, res) {
+                        res.should.have.status(200);
                         done();
-                    });
+                    })
+                done();
             });
     });
 
 
-    it('should delete a semester', function (done) {
+    it('should delete a position', function (done) {
         chai.request(server)
             .get('/api/findallpositions')
             .end(function(err, res){
                 chai.request(server)
-                    .delete('/api/position/' + res.body[1]._id)
+                    .delete('/api/position/' + res.body._id)
                     .end(function (error, response) {
                         response.should.have.status(200);
                         done();
