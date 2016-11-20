@@ -12,6 +12,7 @@ module.exports= function(app, models){
     app.get("/api/position/:positionId", findPositionById);
     app.delete("/api/position/:positionId", deletePosition);
     app.put("/api/position/:positionId", updatePosition);
+    app.put("/api/position/semestername", updateDeadline);
     app.get("/api/findallpositions", findallpositions);
 
 
@@ -43,13 +44,31 @@ module.exports= function(app, models){
             );
     }
 
+    // TO DO : Fix this!
+    function updateDeadline(req, res) {
+        var position = req.body;
+
+        var deadline = position.deadline;
+        var semester = position.semester;
+ 
+        positionModel
+            .updateDeadline(semester, deadline)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
 
     function deletePosition(req,res) {
 
-        var courseId = req.params.positionId;
+        var positionId = req.params.positionId;
 
         positionModel
-            .deleteCourse(positionId)
+            .deletePosition(positionId)
             //responds with some stats
             .then(function (stats) {
                     res.send(200);
@@ -73,33 +92,21 @@ module.exports= function(app, models){
             );
     }
 
-
-
     function createPosition(req, res) {
-
         var position = req.body;
         positionModel
-            .findPositionByCoursename(course.coursename)
+            .createPosition(req.body)
             .then(
-                function (position) {
-                    return positionModel
-                        .createPosition(req.body)
+                function (stats) {
+                    res.send(200);
 
                 }, function (err) {
                     res.sendStatus(400).send(err);
                 }
-            )
-            .then(
-                function (position) {
-                    if(position){
-                        res.sendStatus(200);
-                    }
-                },
-                function (err) {
-                    res.sendStatus(400).send(err);
-                }
             );
     }
+
+
 
 
 

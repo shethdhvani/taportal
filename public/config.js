@@ -33,7 +33,10 @@
                 }
             })
 
-
+            .when("/reports", {
+                templateUrl : "..views/coverage/lcov-report/index.html"
+            })
+                
             // Admin profile
             .when("/aprofile",{
                 templateUrl :"views/admin/aprofile.view.client.html",
@@ -53,6 +56,24 @@
                 }
             })
 
+            .when("/rolemanager",{
+                templateUrl : "views/admin/manageusers.role.manager.view.client.html",
+                controller : "ManageUsersController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+            
+            .when("/updatedeleteusers", {
+                templateUrl: "views/admin/manageusers.updatedelete.view.client.html",
+                controller : "ManageUsersController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+            
             .when("/addcoursesandsemesters",{
                 templateUrl: "views/admin/managecoursesandsemesters.view.client.html",
                 controller: "ManageCoursesSemestersController",
@@ -61,7 +82,7 @@
                     loggedIn: checkLoggedIn
                 }
             })
-
+                
             .when("/createandmanageapplications", {
                 templateUrl : "views/admin/createandmanagepositions.view.client.html",
                 controller: "ManageCreatePositionsController",
@@ -71,8 +92,16 @@
                 }
             })
 
-
-
+            .when("/setpositiondeadlines", {
+                templateUrl : "views/admin/createandmanagepositions.setdeadlines.view.client.html",
+                controller: "ManageCreatePositionsController",
+                controllerAs : "model",
+                resolve:{
+                    loggedIn: checkLoggedIn
+                }
+            })
+                
+                
             // Student Edit Profile
             .when("/aeditprofile",{
                 templateUrl :"views/admin/aprofileedit.view.client.html",

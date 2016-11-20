@@ -16,6 +16,7 @@ module.exports = function () {
         createPosition: createPosition,
         findAllPositions: findAllPositions,
         updatePosition: updatePosition,
+        updateDeadline: updateDeadline,
         deletePosition: deletePosition,
         findPositionById: findPositionById
     };
@@ -26,19 +27,29 @@ module.exports = function () {
         delete position._id;
         return Position
             .update({_id: positionId},{
-                $set: {course: position.coursename, 
-                        semester: position.semestername,
+                $set: {course: position.course,
+                        semester: position.semester,
                         number: position.number,
-                        professor: position.professorname,
+                        professor: position.professor,
                         deadline : position.deadline}}
             );
     }
+
+    function updateDeadline(semester, deadline) {
+        return Position
+            .update({semester : semester},{
+                $set : {deadline : deadline}
+            });
+
+    }
+
 
     function findAllPositions(){
         return Position.find();
     }
 
     function createPosition(position) {
+        console.log(position);
         return  Position.create(position);
     }
 
