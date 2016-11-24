@@ -7,7 +7,6 @@ module.exports= function(app, models){
     var positionModel = models.positionModel;
 
 
-
     app.post("/api/position", createPosition);
     app.get("/api/position/:positionId", findPositionById);
     app.delete("/api/position/:positionId", deletePosition);
@@ -64,7 +63,6 @@ module.exports= function(app, models){
     }
 
     function deletePosition(req,res) {
-
 
         positionModel
             .deletePosition(req.params.positionId)

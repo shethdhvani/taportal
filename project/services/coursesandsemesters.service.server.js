@@ -99,6 +99,31 @@ module.exports= function(app, models){
                 }
             )
             .then(
+            function (course) {
+                if(course){
+                    res.sendStatus(200);
+                }
+            },
+            function (err) {
+                res.sendStatus(400).send(err);
+            }
+        );
+    }
+
+
+    // function findCourseByCoursename(coursename, res) {
+    //     courseModel
+    //         .findCourseByCoursename(coursename)
+    //         .then(
+    //             function (course) {
+    //                 res.json(course);
+    //             },
+    //             function (error) {
+    //                 res.sendStatus(404).send(error);
+    //             }
+    //         );
+    // }
+
                 function (course) {
                     if(course){
                         res.sendStatus(200);
