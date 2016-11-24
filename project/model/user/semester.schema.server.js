@@ -9,10 +9,8 @@ module.exports = function () {
 
     var SemesterSchema = mongoose.Schema({
 
-
-        semester: [{
-            semester: String
-        }]
+        semestername: String
+ 
 
 
 

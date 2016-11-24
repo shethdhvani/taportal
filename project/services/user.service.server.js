@@ -180,10 +180,8 @@ module.exports= function(app, models){
                         return;
                     } else {
                         req.body.password = bcrypt.hashSync(req.body.password);
-
                         return userModel
                             .createUser(req.body)
-
                     }
                 },
                 function (err) {
@@ -193,11 +191,7 @@ module.exports= function(app, models){
             .then(
                 function (user) {
                     if(user){
-
-
-
                         res.sendStatus(200);
-
                     }
                 },
                 function (err) {
@@ -248,7 +242,7 @@ module.exports= function(app, models){
         } else if(username){
             findUserByUsername(username, res);
         }else {
-            findallusers();
+            findAllUsers();
         }
     }
 

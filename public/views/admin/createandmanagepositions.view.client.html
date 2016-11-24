@@ -1,0 +1,217 @@
+<!------------------------------------------------------------------------>
+<!--                                NavBar                              -->
+<!------------------------------------------------------------------------>
+<nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ><b>Create and Manage Positions</b></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#/createandmanageapplications">Create Positions<span class="sr-only">(current)</span></a></li>
+                <li ><a href="#/setpositiondeadlines">Set Application deadline for Semesters  for TA Positions</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<!------------------------------------------------------------------------>
+<!--                     Manage TA positions                            -->
+<!------------------------------------------------------------------------>
+<div class="container">
+    <h4 ><b>Manage TA Positions</b></h4>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+
+                <th>Course</th>
+                <th>Semester</th>
+                <th># Positions</th>
+                <th>Lecturer</th>
+                <th>Deadline</th>
+                <th>Create</th>
+            </tr>
+            </thead>
+
+            <!-- Table Body-->
+            <tbody>
+
+            <tr>
+                <!--Course Name-->
+                    <!-- Dropdown is populated from the database -->
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="Course Name"
+                            ng-model="model.coursename">
+
+                        <option ng-repeat="course in model.courses">{{course.coursename}}</option>
+                    </select>
+                </td>
+
+                <!--Semester Name-->
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="Semester Name"
+                            ng-model="model.semestername">
+                        <option ng-repeat="semester in model.semesters">{{semester.semestername}}</option>
+
+                    </select>
+                </td>
+
+                <!-- # of Positions -->
+                <td>
+                    <input type="number"
+                           ng-model="model.number"
+                           placeholder="Number of Positions"/>
+                </td>
+
+                <!-- Professor Name -->
+                <td>
+                    <input type="text"
+                           ng-model="model.professor"
+                           placeholder="Professor name"/>
+                </td>
+
+                <!-- Deadline for this position-->
+                <td><input type="date"
+                           ng-model="model.deadline"
+                           placeholder="Deadline Date"/></td>
+
+
+                <td>
+                    <a ng-click="model.createPosition(model.coursename, model.semestername,model.number, model.professor, model.deadline )"
+                       class="btn btn-block btn-primary">
+                        Create
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<!------------------------------------------------->
+<!--            Positions Manager                -->
+<!------------------------------------------------->
+<div class="container ">
+    <h4 ><b>Positions Manager</b></h4>
+
+    <!-- Update Message -->
+    <div ng-if="model.updatedmessage" class="alert alert-success">
+        {{model.updatedmessage}}
+    </div>
+
+    <!-- Heading -->
+    <div class="table-responsive">
+        <table class="table table-hover">
+
+            <!-- Header for Position-->
+
+            <th>Course</th>
+            <th>Semester</th>
+            <th># Positions</th>
+            <th>Lecturer</th>
+            <th>Deadline</th>
+
+            <th>Update Position</th>
+            <th>Delete Position</th>
+
+
+            <tr ng-repeat="position in model.positions">
+
+
+                <!--Course-->
+
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="coursename"
+                            ng-model="position.course">
+
+                        <option ng-repeat="course in model.courses">{{course.coursename}}</option>
+
+                    </select>
+                </td>
+
+                <!--Semester-->
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="semestername"
+                            ng-model="position.semester">
+
+                        <option ng-repeat="semester in model.semesters">{{semester.semestername}}</option>
+                    </select>
+                </td>
+
+
+                <!--# Positions-->
+                <td><input type="number"
+                           ng-model="position.number"
+                           placeholder="Number of positions"/></td>
+
+                <!--Lecturer-->
+                <td><input type="text"
+                           ng-model="position.professor"
+                           placeholder="professor Name"/></td>
+
+                <!--Deadline-->
+                <td><input type="date"
+                           ng-model="position.deadline"
+                           placeholder="deadline for the position"/></td>
+
+          <!-- Update Position Button-->
+                <td>
+                    <a class="glyphicon glyphicon-ok makeblack"
+                       ng-click="model.updatePosition(position._id, position)"></a>
+                </td>
+
+                <!--Delete Position Button-->
+                <td>
+                    <a class="glyphicon glyphicon-remove makeblack"
+                       ng-click="model.deletePosition(position._id)"></a>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+<!------------------------------------------------->
+<!--                 Footer                      -->
+<!------------------------------------------------->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a  ng-click="model.logout()">
+                <span>Logout</span>
+            </a>
+
+        </p>
+        <p class="navbar-text pull-left">
+
+            <a  href="#/aconsole">
+                <span>Back to AdminConsole</span>
+            </a>
+        </p>
+
+    </div>
+</nav>
