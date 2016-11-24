@@ -12,7 +12,7 @@ module.exports= function(app, models){
     app.put("/api/course/:courseId", updateCourse);
     app.get("/api/findallcourses", findallcourses);
 
-    
+
     app.post("/api/semester", createSemester);
     app.get("/api/semester/:semesterId", findSemesterById);
     app.delete("/api/semester/:semesterId", deleteSemester);
@@ -21,7 +21,7 @@ module.exports= function(app, models){
 
     function findCourseById(req, res) {
         var id = req.params.courseId;
-        
+
         courseModel
             .findCourseById(id)
             .then(function (course) {
@@ -58,7 +58,7 @@ module.exports= function(app, models){
             .deleteCourse(courseId)
             //responds with some stats
             .then(function (stats) {
-                res.send(200);
+                    res.send(200);
                 },
                 function (error) {
                     res.statusCode(404).send(error);
@@ -67,7 +67,7 @@ module.exports= function(app, models){
 
 
     function findallcourses(req,res) {
-       courseModel
+        courseModel
             .findAllCourses()
             .then(
                 function (courses) {
@@ -79,7 +79,7 @@ module.exports= function(app, models){
             );
     }
 
-    
+
 
     function createCourse(req, res) {
         var course = req.body;
@@ -99,15 +99,15 @@ module.exports= function(app, models){
                 }
             )
             .then(
-            function (course) {
-                if(course){
-                    res.sendStatus(200);
+                function (course) {
+                    if(course){
+                        res.sendStatus(200);
+                    }
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
                 }
-            },
-            function (err) {
-                res.sendStatus(400).send(err);
-            }
-        );
+            );
     }
 
 
@@ -125,7 +125,7 @@ module.exports= function(app, models){
     // }
 
 
-/* Semester Functions */
+    /* Semester Functions */
 
     function findSemesterById(req, res) {
         var id = req.params.semesterId;
