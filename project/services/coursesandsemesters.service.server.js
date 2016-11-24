@@ -58,7 +58,7 @@ module.exports= function(app, models){
             .deleteCourse(courseId)
             //responds with some stats
             .then(function (stats) {
-                    res.sendStatus(200);
+                    res.send(200);
                 },
                 function (error) {
                     res.statusCode(404).send(error);
@@ -99,31 +99,6 @@ module.exports= function(app, models){
                 }
             )
             .then(
-            function (course) {
-                if(course){
-                    res.sendStatus(200);
-                }
-            },
-            function (err) {
-                res.sendStatus(400).send(err);
-            }
-        );
-    }
-
-
-    // function findCourseByCoursename(coursename, res) {
-    //     courseModel
-    //         .findCourseByCoursename(coursename)
-    //         .then(
-    //             function (course) {
-    //                 res.json(course);
-    //             },
-    //             function (error) {
-    //                 res.sendStatus(404).send(error);
-    //             }
-    //         );
-    // }
-
                 function (course) {
                     if(course){
                         res.sendStatus(200);
@@ -134,8 +109,6 @@ module.exports= function(app, models){
                 }
             );
     }
-
-    /* for future use if required */
 
 
     // function findCourseByCoursename(coursename, res) {
@@ -192,7 +165,7 @@ module.exports= function(app, models){
             .deleteSemester(semesterId)
 
             .then(function (stats) {
-                    res.sendStatus(200);
+                    res.send(200);
                 },
                 function (error) {
                     res.statusCode(404).send(error);
@@ -247,20 +220,18 @@ module.exports= function(app, models){
     }
 
 
-    /* for future use if required */
-
-    /*function findSemesterBySemestername(semestername, res) {
-     semesterModel
-     .findSemesterBySemestername(semestername)
-     .then(
-     function (semester) {
-     res.json(semester);
-     },
-     function (error) {
-     res.sendStatus(404).send(error);
-     }
-     );
-     }*/
+    function findSemesterBySemestername(semestername, res) {
+        semesterModel
+            .findSemesterBySemestername(semestername)
+            .then(
+                function (semester) {
+                    res.json(semester);
+                },
+                function (error) {
+                    res.sendStatus(404).send(error);
+                }
+            );
+    }
 
 
 
