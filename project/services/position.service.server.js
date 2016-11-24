@@ -1,12 +1,11 @@
 /**
  * Created by seshasai on 11/17/2016.
  */
- 
+
 module.exports= function(app, models){
 
     var positionModel = models.positionModel;
 
-    
 
     app.post("/api/position", createPosition);
     app.get("/api/position/:positionId", findPositionById);
@@ -50,7 +49,7 @@ module.exports= function(app, models){
 
         var deadline = position.deadline;
         var semester = position.semester;
- 
+
         positionModel
             .updateDeadline(semester, deadline)
             .then(
@@ -65,7 +64,6 @@ module.exports= function(app, models){
 
     function deletePosition(req,res) {
 
-         
         positionModel
             .deletePosition(req.params.positionId)
             .then(function (stats) {
@@ -96,7 +94,7 @@ module.exports= function(app, models){
             .createPosition(req.body)
             .then(
                 function (stats) {
-                    res.send(200);
+                    res.sendStatus(200);
 
                 }, function (err) {
                     res.sendStatus(400).send(err);
