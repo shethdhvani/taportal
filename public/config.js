@@ -159,8 +159,16 @@
                     loggedIn: checkLoggedIn
                 }
             })
-
-
+//anvita
+            .when("/seditprofile",{
+                templateUrl :"views/user/sprofile.view.edit.client.html",
+                controller: "SProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+// end anvita
             // Student Register
             .when("/sregister",{
                 templateUrl: "views/user/sregister.view.client.html",

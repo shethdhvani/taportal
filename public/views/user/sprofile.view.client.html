@@ -1,23 +1,97 @@
-<div class="container-fluid">
+<div ng-class="container">
     <h1>Student Profile</h1>
-
-
-
-    <a class="btn btn-primary btn-block"
-       href="#/studentjobapplication">Apply For TA Positions</a>
 </div>
+
+<div class="container-fluid">
+    <div>
+        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+            <a  href="#/seditprofile"> <button type="button" class="btn btn-primary" >Edit Profile</button></a>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+        <button type="button" class="btn btn-primary">Apply for jobs</button>
+            </div>
+        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-4">
+        <button type="button" class="btn btn-primary">My jobs dashboard</button>
+            </div>
+        <br>
+        <hr>
+        <br>
+
+<div class="container-fluid">
+
+
+    <label>name:</label>
+    {{model.user.username}}
+<br>
+        <label>nuid:</label>
+        {{model.user.nuid}}
+    <br>
+        <label>email:</label>
+        {{model.user.email}}
+    <br>
+        <label>gpa:</label>
+        {{model.user.gpa}}
+    <br>
+        <label>availability:</label>
+        {{model.user.availability}}
+    <br>
+        <label>coursesTaken:<br>
+            <text  style="font-weight:normal;" ng-repeat="x in model.user.coursesTaken">{{x.name}}<br></text>
+
+    <br>
+        <label>currentCourses:</label><br>
+            <text  style="font-weight:normal;" ng-repeat="x in model.user.currentCourses">{{x.name}}<br></text>
+
+    <br>
+    Resume:
+            View Full Resume:<a ng-href="{{model.user.resumeURL}}">{{model.user.resumeName}}</a>
+    <br>
+    <iframe name='formresponse' src="{{model.user.resumeURL}}" width='300' height='400'></iframe>
+    <br>
+    Other Docs:
+    <br>
+    <iframe name='formresponse' width='300' height='200'></iframe>
+    <br>
+            Other Docs:
+            <br>
+            <iframe name='formresponse' width='300' height='200'></iframe>
+            <br>
+            Other Docs:
+            <br>
+            <iframe name='formresponse' width='300' height='200'></iframe>
+            <br>
+
+
+        </div>
+       <br>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+<div class="verticalline">
+    </div>
+
+    </div>
+
+
+
+
 
 <!-- Footer -->
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a ng-click = "model.logout()">Logout</a>
+            <a href="#/seditprofile">
+                <span>Edit Profile</span>
             </a>
         </p>
 
         <p class="navbar-text pull-left">
-            <a href="#/seditprofile">
-                <span>Edit Profile</span>
+            <a ng-click = "model.logout()">Logout</a>
             </a>
         </p>
 

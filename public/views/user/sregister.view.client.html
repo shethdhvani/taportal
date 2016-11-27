@@ -31,7 +31,7 @@
             <input ng-model="firstName"
                    placeholder="firstName"
                    name="firstName"
-                   type="firstName"
+                   type="text"
                    class="form-control"
                    required/>
 
@@ -40,7 +40,7 @@
             <input ng-model="lastName"
                    placeholder="lastName"
                    name="lastName"
-                   type="lastName"
+                   type="text"
                    class="form-control"
                    required/>
 
@@ -76,8 +76,119 @@
                    required/>
 
             <p> </p>
+
+          <!--  <input ng-model="current courses"
+                   required/>-->
+
+        <!--    <form>
+                <div class="multiselect">
+                    <div class="selectBox" ng-click="model.showCheckboxes()">
+                        <select>
+                            <option>Select current courses</option>
+                        </select>
+                        <div class="overSelect"></div>
+                    </div>
+                    <div id="checkboxes">
+                        <div ng-options="course.model for course in model.courses">
+                        <!--<label for="one"><input type="checkbox" id="one"/>First checkbox</label>
+                        <label for="two"><input type="checkbox" id="two"/>Second checkbox </label>
+                        <label for="three"><input type="checkbox" id="three"/>Third checkbox</label>-->
+                  <!--      <label><input type="checkbox" name="mybox" value="{{course.model}}" ng-model="mybox"/>{{course.model}}</label>
+                       </div>
+                    </div>
+                </div>
+
+            </form> -->
+
+            <!-- Multi select -->
+            <b> Courses Taken</b>
+            <form>
+                <div class="multiselect">
+                    <div class="selectBox">
+                        <select ng-model="coursetaken.group"
+                                ng-options="course.coursename as course.coursename for course in model.courses"
+                                ng-multiple="true" multiple>
+
+                            <option value="{{coursetaken.group}}">Choose groups</option>
+                            </select>
+
+                        </div>
+
+                </div>
+            </form>
+            <b>Current Courses</b>
+
+            <form>
+                <div class="multiselect">
+                    <div class="selectBox">
+                        <select ng-model="coursetakencurrent.group"
+                                ng-options="course.coursename as course.coursename for course in model.courses"
+                                ng-multiple="true" multiple>
+
+                            <option value="{{coursetakencurrent.group}}">Choose groups</option>
+                        </select>
+
+                    </div>
+
+                </div>
+            </form>
+
+
+
+            <p></p>
+
+
+
+
+            <input ng-model="gpa"
+                   placeholder="gpa"
+                   name="gpa"
+                   type="number"
+                   class="form-control"
+                   required/>
+<p></p>
+
+<!--<select name="availability">
+<div ng-repeat="">-->
+
+            <p></p>
+<!--<form>
+            <select>
+                select semester
+                </select>
+            <div ng-repeat="semester in model.semesters">
+
+                <label>{{semester.semestername}}</label>
+            </div>
+    </form>-->
+
+
+            <!--<div class="multiselect">
+                <div class="selectBox" ng-click="model.showSemesters()">
+                    <select>
+                        <option>Select semester available</option>
+                    </select>
+                    <div class="overSelect"></div>
+                </div>
+                <div id="semesterselect">
+                    &lt;!&ndash;<label for="one2"><input type="checkbox" id="one2"/>Firstttt checkbox</label>
+                    <label for="two2"><input type="checkbox" id="two2"/>Secondddd checkbox </label>
+                    <label for="three2"><input type="checkbox" id="three2"/>Thirdddd checkbox</label>
+               &ndash;&gt;
+                    <div ng-repeat="course in model.courses">
+                        &lt;!&ndash;<label for="one"><input type="checkbox" id="one"/>First checkbox</label>
+                        <label for="two"><input type="checkbox" id="two"/>Second checkbox </label>
+                        <label for="three"><input type="checkbox" id="three"/>Third checkbox</label>&ndash;&gt;
+                        <label><input type="checkbox"/>{{course.coursename}}</label>
+                    </div>
+                </div>
+            </div>-->
+
+
+<p></p>
+
             <button class="btn btn-primary btn-block"
-                    ng-click="model.register(username, password, firstName, lastName, email)"
+                    ng-click="model.register(username, password, firstName, lastName, email, usertype, gpa, coursetaken.group, coursetakencurrent.group)"
                     type="submit">Register</button>
 
         </form>
@@ -87,6 +198,11 @@
 
         <a class="btn btn-danger btn-block"
            href="#/login">Cancel</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
     </div>
 </div>
