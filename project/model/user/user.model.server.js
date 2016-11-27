@@ -16,7 +16,8 @@ module.exports = function () {
         deleteUser: deleteUser,
         updateUser: updateUser,
         findUserByUsername: findUserByUsername,
-        findAllUsers: findAllUsers
+        findAllUsers: findAllUsers,
+        updateResumeOfStudent: updateResumeOfStudent
 
     };
     return api;
@@ -36,13 +37,29 @@ module.exports = function () {
     }
 
     function updateUser(userId, user) {
-        delete user._id;
+       // delete user._id;
         return User
             .update({_id: userId},{
-                $set: {firstName : user.firstName,
+                $set: {username: user.username,
+                firstName : user.firstName,
                     lastName : user.lastName,
                     email: user.email,
-                    usertype : user.usertype}}
+                    currentCourses: user.currentCourses,
+                    coursesTaken: user.coursesTaken,
+                    gpa: parseInt(user.gpa),
+                    //usertype : user.usertype
+                 }}
+            );
+    }
+
+    function updateResumeOfStudent(userId, resume) {
+       // delete user._id;
+        console.log("Here at update resume db");
+        console.log(resume);
+        return User
+            .update({_id: userId},{
+                $set: {resumeURL : resume.url,
+                    resumeName: resume.resume}}
             );
     }
 
@@ -56,6 +73,7 @@ module.exports = function () {
     }
 
     function createUser(user){
+        console.log(user.coursestaken);
         return  User.create(user);
     }
 

@@ -19,11 +19,15 @@ module.exports = function () {
         image: String, // Image of the user
         aboutMyself: String, // Few lines about the user
 
+
         // Fields specific for Students
-        resume: {
-            url: String, //Place where the Resume is stored
-            resume : String
-        } ,
+        resumeURL: String,
+        resumeName: String,
+
+        //{
+        //    url: String, //Place where the Resume is stored
+        //    resume : String
+        //} ,
         // Relevant documents that are attached by a student
         documents: [
             {
@@ -35,6 +39,8 @@ module.exports = function () {
         nuid : Number,
         phone : String,
         gpa : Number,
+        availability :String,
+       // availability : {type : String,  enum: ['Fully Available', 'Looking for Co-ops']},
         coursesTaken: [
             {
                 name: String
