@@ -46,7 +46,7 @@ describe('Tests For Courses', function() {
     it('should create course', function (done) {
         chai.request(server)
             .post('/api/course')
-            .send({'coursename': 'testCourse1'})
+            .send({'coursename': 'testCourse1_test'})
             .end(function (err, res) {
                 res.should.have.status(200);
                 done();
@@ -56,17 +56,29 @@ describe('Tests For Courses', function() {
     it('should create course', function (done) {
         chai.request(server)
             .post('/api/course')
-            .send({'coursename': 'test course qwerty'})
+            .send({'coursename': 'newCourse_test'})
             .end(function (err, res) {
                 res.should.have.status(200);
                 done();
             });
     });
 
+    // anvita
+    //it('should create course negative path', function (done) {
+    //    chai.request(server)
+    //        .post('/api/course')
+    //        .send("")
+    //        .end(function (err, res) {
+    //            err.should.have.status(200);
+    //            done();
+    //        });
+    //});
+    // end anvita
+
     it('should not create a course that exists', function (done) {
         chai.request(server)
             .post('/api/course')
-            .send({'coursename': '(CS 5010) PDP'})
+            .send({'coursename': 'newCourse_test'})
             .end(function (err, res) {
                 res.should.have.status(200);
                 done();
@@ -89,6 +101,22 @@ describe('Tests For Courses', function() {
             });
     });
 
+ // anvita
+    it('should update a course negative path', function (done) {
+        chai.request(server)
+            .get('/api/findallcourses')
+            .end(function(err, res){
+                chai.request(server)
+                    .put('/api/course/123')
+                    .send({'coursename': 'updatedCourse'})
+                    .end(function (error, response) {
+                        response.should.have.status(404);
+                        // done();
+                    });
+                done();
+            });
+    });
+    // end anvita
 
     it('should find course by courseid', function (done) {
         chai.request(server)
@@ -103,7 +131,33 @@ describe('Tests For Courses', function() {
             });
     });
 
+// Anvita working ---- async test
+   // this.timeout(15000);
+//    it('should find course by courseid negative path', function (done) {
+//        this.timeout(150);
+//        setTimeout(done, 150);
+//        chai.request(server)
+//            .get('/api/course/123')
+//            .end(function (error, response) {
+//                response.should.have.status(200);
+//done();
+//            });
 
+        //chai.request(server)
+        //    .get('/api/findallcourses')
+        //    .end(function (err, res) {
+        //        chai.request(server)
+        //            .get('/api/course/123')
+        //
+        //            .end(function (error, response) {
+        //                response.should.have.status(200);
+        //
+        //            });
+        //        done();
+        //    });
+    });
+
+// end anvita
     it('should delete a course', function (done) {
         chai.request(server)
             .get('/api/findallcourses')
@@ -117,9 +171,23 @@ describe('Tests For Courses', function() {
                 done();
             });
     });
+//anvita
+    it('should delete a course negative apth', function (done) {
+        chai.request(server)
+            .get('/api/findallcourses')
+            .end(function(err, res){
+                chai.request(server)
+                    .delete('/api/course/123')
+                    .end(function (error, response) {
+                        response.should.have.status(200);
+                        // done();
+                    });
+                done();
+            });
+    });
+    // end anvita
 
-
-});
+//});
 
 describe('Tests For Semesters', function() {
 
@@ -152,6 +220,16 @@ describe('Tests For Semesters', function() {
                 done();
             });
     });
+//anvita - check
+    it('should create semester negative path', function (done) {
+        chai.request(server)
+            .post('/api/semester')
+            .end(function (err, res) {
+                res.should.have.status(200);
+                done();
+            });
+    });
+  // anvita end
 
     it('should not create a semester that exists', function (done) {
         chai.request(server)
@@ -179,6 +257,37 @@ describe('Tests For Semesters', function() {
             });
 
     });
+
+    //anvita
+    it('should update a semester negative path', function (done) {
+        chai.request(server)
+            .get('/api/findallsemesters')
+            .end(function(err, res){
+                chai.request(server)
+                    .put('/api/semester/'+res.body[0]._id)
+                    .send({'semestername': 'updatedSem'})
+                    .end(function (error, response) {
+                        response.should.have.status(200);
+                        // done();
+                    });
+                done();
+            });
+
+    });
+
+
+
+    it('should find semester by semesterid neagateive path', function (done) {
+        chai.request(server)
+            .get('/api/semester/123')
+            .end(function (error, response) {
+                response.should.have.status(200);
+                done();
+            });
+        done();
+    });
+
+    //end anvita
 
 
     it('should find semester by semesterid', function (done) {
