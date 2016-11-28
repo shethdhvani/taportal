@@ -6,11 +6,10 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var bcrypt = require("bcrypt-nodejs");
 
+/* For resume upload */
 var fs = require("fs");
-
 var multer  = require('multer');
 var upload = multer({ dest: __dirname+'/../../public/uploads' });
-//var upload = multer({ dest: __dirname+'/uploads1' });
 
 
 module.exports= function(app, models){
@@ -26,6 +25,10 @@ module.exports= function(app, models){
     app.get("/api/user/:userId", findUserById);
     app.delete("/api/user/:userId", deleteUser);
     app.put("/api/user/:userId", updateUser);
+    app.put("/api/user/addcourse/:userId", addUserCourses);
+    app.put("/api/user/addcurrentcourse/:userId", addCurrentCourses);
+    app.put("/api/user/deleteusercourse/:userId",deleteUserCourse);
+    app.put("/api/user/deletecurrentcourse/:userId",deleteCurrentCourse);
     app.get('/api/findallusers', findallusers);
     app.post("/api/resumeupload",upload.single('myResume'), uploadResume);
 
@@ -41,7 +44,53 @@ module.exports= function(app, models){
 
 
 
+    function uploadResume(req, res) {
+       var UserId        = req.body.userId;
+        
+        var myFile        = req.file;
+        var path          = myFile.path;
+        var originalname  = myFile.originalname;
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+        var filename      = myFile.filename;
+ 
+        //Get the file type
+        var mimes = mimetype.split('/');
+        var extension = mimes[mimes.length - 1];
+        
+        //Append the file extension at the end of randomly generated filename
+        var file = filename+"."+extension;
 
+        var newpath = path+"."+extension;
+
+        //Rename the file path
+        fs.rename(path, newpath);
+
+        //Check whether the upload is for UPLOAD widget or IMAGE widget
+        var resume =
+        {
+            url: "/uploads/"+file, //originalname;
+            resume: originalname
+        };
+
+        //Check whether the user needs to be edited or created!
+        if(UserId){
+            userModel
+                .updateResumeOfStudent(UserId, resume)
+                .then(
+                    function(user) {
+                        res.send(200);
+                       // res.redirect("/sprofile");
+                    },
+                    function(err) {
+                        res.status(400).send(err);
+                    }
+                );
+        }
+
+    }
+    
+    
 
     function logout(req, res) {
         req.logout();
@@ -156,11 +205,40 @@ module.exports= function(app, models){
         }
     }
 
+    function addUserCourses(req,res) {
+        var id = req.params.userId;
+        var user = req.body;
+        userModel
+            .addUserCourses(id, user)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
+
+    function addCurrentCourses(req,res) {
+        var id = req.params.userId;
+        var user = req.body;
+        userModel
+            .addCurrentCourses(id, user)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
+
     function updateUser(req, res) {
         var id = req.params.userId;
         var user = req.body;
-        console.log(id);
-        console.log(user);
+
 
         userModel
             .updateUser(id, user)
@@ -210,6 +288,36 @@ module.exports= function(app, models){
     }
 
 
+    function deleteUserCourse(req,res) {
+        var userId = req.params.userId;
+        var coursename = req.body;
+        userModel
+            .deleteUserCourse(userId, coursename)
+            .then(function (stats) {
+
+                res.sendStatus(200);
+            },
+            function (error) {
+                res.statusCode(404).send(error);
+            });
+    }
+
+
+    function deleteCurrentCourse(req,res) {
+        var userId = req.params.userId;
+        var coursename = req.body;
+        userModel
+            .deleteCurrentCourse(userId, coursename)
+            .then(function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.statusCode(404).send(error);
+                });
+    }
+
+
+
     function deleteUser(req,res) {
         var userId = req.params.userId;
 
@@ -218,7 +326,7 @@ module.exports= function(app, models){
             //responds with some stats
             .then(function (stats) {
 
-                    res.send(200);
+                    res.sendStatus(200);
                 },
                 function (error) {
                     res.statusCode(404).send(error);
@@ -250,7 +358,7 @@ module.exports= function(app, models){
         } else if(username){
             findUserByUsername(username, res);
         }else {
-            findAllUsers();
+            findallusers();
         }
     }
 
@@ -277,70 +385,6 @@ module.exports= function(app, models){
                     res.sendStatus(404).send(error);
                 }
             );
-    }
-
-
-    function uploadResume(req, res) {
-
-        console.log("Here in upload resume!");
-
-        var UserId        = req.body.userId;
-        console.log(UserId);
-
-        var myFile        = req.file;
-
-
-        var path          = myFile.path;
-        var originalname  = myFile.originalname;
-        var size          = myFile.size;
-        var mimetype      = myFile.mimetype;
-        var filename      = myFile.filename;
-
-        console.log(originalname);
-
-
-        //Get the file type
-        var mimes = mimetype.split('/');
-        var extension = mimes[mimes.length - 1];
-        //console.log(extension);
-        //Append the file extension at the end of randomly generated filename
-        var file = filename+"."+extension;
-
-        var newpath = path+"."+extension;
-
-        //Rename the file path
-        fs.rename(path, newpath);
-
-        //Check whether the upload is for UPLOAD widget or IMAGE widget
-
-
-            var resume =
-                 {
-                    url: "/uploads/"+file, //originalname;
-                    resume: originalname
-                 };
-
-
-
-        //Check whether the user needs to be edited or created!
-       if(UserId){
-
-
-         //   console.log("UserIdexists");
-
-            userModel
-                .updateResumeOfStudent(UserId, resume)
-                .then(
-                    function(user) {
-
-                        res.redirect("/seditprofile");
-                    },
-                    function(err) {
-                        res.status(400).send(err);
-                    }
-                );
-        }
-
     }
 
 
