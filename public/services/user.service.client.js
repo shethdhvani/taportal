@@ -22,37 +22,46 @@
             login: login,
             logout: logout,
             findUserByUsername: findUserByUsername,
-            findAllUsers: findAllUsers
+            findAllUsers: findAllUsers,
+            addUserCourses: addUserCourses,
+            deleteUserCourse: deleteUserCourse,
+            addCurrentCourses: addCurrentCourses,
+            deleteCurrentCourse: deleteCurrentCourse
         };
 
         return api;
         /*functions are implemented below*/
 
+        //Decomissioned
+        // function register(username,password, firstName, lastName, email, usertype) {
+        //
+        //
+        //     var user= {
+        //         username: username,
+        //         password : password,
+        //         firstName: firstName,
+        //         lastName: lastName,
+        //         email: email,
+        //         usertype: usertype
+        //     };
+        //
+        //     return $http.post("/api/register",user);
+        //
+        // }
+
         function register(username,password, firstName, lastName, email, usertype, gpa, coursestaken, coursecurrent) {
 
-            console.log(coursecurrent);
+            var coursesTakenList = [ ];
 
-            var coursesTakenList = [
-
-            ];
-
-            for(var i in coursestaken)
-            {
+            for(var i in coursestaken) {
                 var x = {name: coursestaken[i]};
-                coursesTakenList.push(x);
-            }
+                coursesTakenList.push(x);}
 
-            var coursesCurrent = [
-
-            ];
-            for(var i in coursecurrent)
-            {
+            var coursesCurrent = [];
+            for(var i in coursecurrent) {
                 var x = {name: coursecurrent[i]};
                 coursesCurrent.push(x);
             }
-
-
-            console.log(coursesTakenList);
 
             var user= {
                 username: username,
@@ -65,7 +74,7 @@
                 coursesTaken: coursesTakenList,
                 currentCourses: coursesCurrent
             };
-         console.log(user);
+
             return $http.post("/api/register",user);
 
         }
@@ -114,50 +123,44 @@
 
 
 
-        function updateUser(userId, user, newCourcesCurrent, oldCoursesCurrent, newcoursesTaken, oldcoursesTaken){
+        // function updateUser(userId, user){
+        //     var url="/api/user/"+userId;
+        //     return $http.put(url, user);
+        //
+        //
+        // }
 
-            // current courses
-            var newCourcesCurrent1 = [
 
-            ];
-            for(var i in newCourcesCurrent)
-            {
-                var x = {name: newCourcesCurrent[i]};
-                newCourcesCurrent1.push(x);
-            }
 
-            if(newCourcesCurrent1.length > 0){
-                user.currentCourses = newCourcesCurrent1;
-            }
-            else{
-                user.currentCourses = oldCoursesCurrent;
-            }
-
-            // courses taken
-
-            var newCourcesTaken1 = [
-
-            ];
-            for(var i in newcoursesTaken)
-            {
-                var x = {name: newcoursesTaken[i]};
-                newCourcesTaken1.push(x);
-            }
-
-            if(newCourcesTaken1.length > 0){
-                user.coursesTaken = newCourcesTaken1;
-            }
-            else{
-                user.coursesTaken = oldcoursesTaken;
-            }
-
-          //  console.log(user);
-            var url="/api/user/"+userId;
+        function addCurrentCourses(userId, user) {
+            var url="/api/user/addcurrentcourse/"+userId;
             return $http.put(url, user);
-
-
         }
 
+        function deleteCurrentCourse(userId, course){
+            var coursename = {
+                course: course
+            };
+
+            var url="/api/user/deletecurrentcourse/"+userId;
+            return $http.put(url, coursename);
+        }
+
+
+        
+        function addUserCourses(userId, user) {
+            var url="/api/user/addcourse/"+userId;
+            return $http.put(url, user);
+        }
+
+        function deleteUserCourse(userId, course){
+            var coursename = {
+                course: course
+            };
+            
+            var url="/api/user/deleteusercourse/"+userId;
+            return $http.put(url, coursename);
+        }
 
         function deleteUser(userId){
             var url = "/api/user/"+userId;
@@ -165,6 +168,43 @@
 
         }
 
+
+        // TODO - get the javascript work in controller for Sprint 4
+        // Function written by Anvita - 11/27
+        function updateUser(userId, user, newCourcesCurrent, oldCoursesCurrent, newcoursesTaken, oldcoursesTaken){
+
+            // current courses
+            var newCourcesCurrent1 = [];
+            for(var i in newCourcesCurrent){
+                var x = {name: newCourcesCurrent[i]};
+                newCourcesCurrent1.push(x);
+            }
+
+            if(newCourcesCurrent1.length > 0){
+                user.currentCourses = newCourcesCurrent1;
+            }else{
+                user.currentCourses = oldCoursesCurrent;
+            }
+
+            // courses taken
+            var newCourcesTaken1 = [];
+            for(var i in newcoursesTaken) {
+                var x = {name: newcoursesTaken[i]};
+                newCourcesTaken1.push(x);
+            }
+
+            if(newCourcesTaken1.length > 0){
+                user.coursesTaken = newCourcesTaken1;
+            }else{
+                user.coursesTaken = oldcoursesTaken;
+            }
+
+
+
+            var url="/api/user/"+userId;
+            return $http.put(url, user);
+        }
+        /////////////////////////////////////////////////////////////////
 
         
     }

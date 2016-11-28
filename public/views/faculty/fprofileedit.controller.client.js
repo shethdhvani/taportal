@@ -1,23 +1,25 @@
-/**
- * Created by seshasai on 11/5/2016.
- */
 (function(){
     angular
         .module("TaPortal")
-        .controller("SProfileController", SProfileController);
+        .controller("FEditProfileController", FEditProfileController);
 
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function SProfileController($routeParams, $location, UserService, $rootScope) {
+    function FEditProfileController($routeParams, $location, UserService, $rootScope, CoursesandSemestersService) {
         var vm = this;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+        vm.addUserCourses = addUserCourses;
+        vm.deleteUserCourse = deleteUserCourse;
+
         vm.userId = $rootScope.currentUser._id;
-        vm.logout = logout;
         var userId = $rootScope.currentUser._id;
+        vm.logout = logout;
+
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
+            findAllCourses();
             UserService
                 .findUserById(userId)
                 .then(function (response) {
@@ -25,6 +27,14 @@
                 });
         }
         init();
+
+        function findAllCourses() {
+            CoursesandSemestersService
+                .findAllCourses()
+                .then(function (response) {
+                    vm.courses =  response.data;
+                })
+        }
 
         function logout() {
             UserService
@@ -38,6 +48,23 @@
                     }
                 );
         }
+
+        function deleteUserCourse(course) {
+           UserService
+                .deleteUserCourse(userId, course)
+                .then(function (res) {
+                    var updatedUser = res.data;
+                    if(updatedUser){
+                        vm.success="Successfully Deleted courses";
+                        init();
+                    }else {
+                        vm.error="Someting is off";
+                    }
+                })
+
+        }
+
+
         function deleteUser() {
             UserService
                 .deleteUser(userId)
@@ -51,13 +78,28 @@
                 });
         }
 
+        function addUserCourses(user) {
+            UserService
+                .addUserCourses(userId, user)
+                .then(function (res) {
+                    var updatedUser = res.data;
+                    if(updatedUser){
+                        vm.success="Successfully updated courses";
+                        init();
+                    }else {
+                        vm.error="Someting is off";
+                    }
+                })
+        }
         function updateUser(user){
+           
             UserService
                 .updateUser(userId, user)
                 .then(function (res) {
                     var updatedUser = res.data;
                     if (updatedUser){
                         vm.success="successfully updated!";
+
                     }else{
                         vm.error = "Some thing doesn't seem right here";
                     }
