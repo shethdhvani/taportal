@@ -18,11 +18,47 @@ module.exports= function(app, models){
     app.delete("/api/semester/:semesterId", deleteSemester);
     app.put("/api/semester/:semesterId", updateSemester);
     app.get("/api/findallsemesters", findallsemesters);
+    // anvita
+    app.get("/api/semesterName/:semesterName", findSemesterByName);
+    app.get("/api/courseName/:courseName", findCourseByName);
+    // end anvita
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Srivatsav                                                      //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // anvita
+
+    
+    //anvita
+    function findCourseByName(req, res) {
+        var name = req.params.courseName;
+
+        courseModel
+            .findCourseByName(name)
+            .then(function (course) {
+                res.send(course);
+            }, function (error) {
+                res.statusCode(404).send(error);
+            });
+    }
+
+
+    function findSemesterByName(req, res) {
+        var name = req.params.semesterName;
+
+        semesterModel
+            .findSemesterByName(name)
+            .then(function (semester) {
+                res.send(semester);
+            }, function (error) {
+                res.statusCode(404).send(error);
+            });
+    }
+
+    // end anvita
+
 
     // Author: Sesha Sai Srivatsav
     // Description: Given courseId, the method returns the course
