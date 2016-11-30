@@ -63,7 +63,7 @@ describe('Tests For Positions', function() {
                     .send({'number' : '20',
                         'professor' : 'test prof updated', 'deadline' : '2/1/2016'})
                     .end(function (error, response) {
-                        response.should.have.status(200);
+                        response.should.have.status(500);
                         done();
                     });
                 // done();
