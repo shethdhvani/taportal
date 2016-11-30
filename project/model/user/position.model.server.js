@@ -18,10 +18,20 @@ module.exports = function () {
         updatePosition: updatePosition,
         updateDeadline: updateDeadline,
         deletePosition: deletePosition,
-        findPositionById: findPositionById
+        findPositionById: findPositionById,
+        findPositionByName: findPositionByName
     };
 
     return api;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Anvita                                                     //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function findPositionByName(Name) {
+        // return Course.findById({_id: courseId});
+        return Semester.findOne({course: Name});
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Srivatsav                                                      //
