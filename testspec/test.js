@@ -166,11 +166,11 @@ describe('Test For User', function() {
 //anvita
     it('should update a user negativepath', function (done) {
         chai.request(server)
-            .get('/api/findallusers')
+            .get('/api/user/'+"?username=zxc_test")
             .end(function(err, res){
                 chai.request(server)
-                    .put('/api/user/'+ res.body[0]._id)
-                    .send({'firstName': 'updateFirstName'})
+                    .put('/api/user/'+ res.body._id)
+                    .send({'firstName': 'NewFirstName'})
                     .end(function (error, response) {
                         response.should.have.status(500);
                         done();
@@ -181,11 +181,11 @@ describe('Test For User', function() {
 
     it('should update a user', function (done) {
         chai.request(server)
-            .get('/api/findallusers')
+            .get('/api/user/'+"?username=zxc_test")
             .end(function(err, res){
                 chai.request(server)
-                    .put('/api/user/'+ res.body[0]._id)
-                    .send({  username: "un_test",
+                    .put('/api/user/'+ res.body._id)
+                    .send({  username: "un_test1",
                         password : "pw_test",
                         firstName: "fn_test",
                         lastName: "ln_test",

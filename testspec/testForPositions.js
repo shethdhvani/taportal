@@ -56,10 +56,10 @@ describe('Tests For Positions', function() {
 
     it('should update a position', function (done) {
         chai.request(server)
-            .get('/api/findallpositions')
+            .get("/api/positionName/testCourse1")
             .end(function(err, res){
                 chai.request(server)
-                    .put('/api/position/' + res.body[0]._id)
+                    .put('/api/position/' + res.body._id)
                     .send({'number' : '20',
                         'professor' : 'test prof updated', 'deadline' : '2/1/2016'})
                     .end(function (error, response) {
@@ -87,10 +87,10 @@ describe('Tests For Positions', function() {
 
     it('should delete a position', function (done) {
         chai.request(server)
-            .get('/api/findallpositions')
+            .get("/api/positionName/testCourse1")
             .end(function(err, res){
                 chai.request(server)
-                    .delete('/api/position/' + res.body[4]._id)
+                    .delete('/api/position/' + res.body._id)
                     .end(function (error, response) {
                         response.should.have.status(200);
                         done();
