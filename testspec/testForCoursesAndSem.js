@@ -2,6 +2,9 @@
  * Created by Dhvani on 11/18/2016.
  */
 
+//Author: Dhvani
+//Test cases for courses and semesters
+
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../server');
@@ -18,8 +21,6 @@ var express = require('express');
 var app = express();
 exports.app = app;
 chai.use(chaiHttp);
-
-var cid = "";
 
 describe('Tests For Courses', function() {
 
@@ -175,7 +176,7 @@ describe('Tests For Courses', function() {
     });
 // end anvita
 //anvita
-    it('should delete a course negative apth', function (done) {
+    it('should delete a course negative path', function (done) {
         chai.request(server)
             .get('/api/courseName/:courseName')
             .end(function(err, res){
