@@ -31,14 +31,7 @@ module.exports = function () {
     //                      Description: The below functions provide CRUD operations on Course     //
     //                                                                                              //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
-    // anvita
-    function findCourseByName(courseName) {
-       // return Course.findById({_id: courseId});
-        return Course.findOne({coursename: courseName});
-    }
 
-
-    // end anvita
 
     function updateCourse(courseId, course) {
         delete course._id;
@@ -80,6 +73,16 @@ module.exports = function () {
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+    // anvita
+    // Developer: Anvita
+    // Description:
 
+    function findCourseByName(courseName) {
+        // return Course.findById({_id: courseId});
+        return Course.findOne({coursename: courseName});
+    }
+
+
+    // end anvita
 
 };
