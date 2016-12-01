@@ -30,7 +30,7 @@ module.exports = function () {
 
     function findPositionByName(Name) {
         // return Course.findById({_id: courseId});
-        return Semester.findOne({course: Name});
+        return Position.findOne({course: Name});
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -14,15 +14,16 @@ module.exports= function(app, models){
     app.put("/api/position/:positionId", updatePosition);
     app.put("/api/position/semestername", updateDeadline);
     app.get("/api/findallpositions", findallpositions);
+  //  app.get("/api/findPositionByCourseName", courseName);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Anvita                                                     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    app.get("/api/positionName/:positionName", findPositionByName);
+    app.get("/api/findPositionByCourseName/:courseName", findPositionByCourseName);
 
-    function findPositionByName(req, res) {
-        var name = req.params.positionId;
+    function findPositionByCourseName(req, res) {
+        var name = req.params.courseName;
         positionModel
             .findPositionByName(name)
             .then(function (position) {
@@ -92,7 +93,7 @@ module.exports= function(app, models){
     // function:deletePosition
     function deletePosition(req,res) {
 
-         
+
         positionModel
             .deletePosition(req.params.positionId)
             .then(function (stats) {
