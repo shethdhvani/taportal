@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for taportal-master\project\model\user\course.schema.server.js</title>
+    <title>Code coverage report for taportal-master\project\model\user\application.schema.server.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../../index.html">all files</a> / <a href="index.html">taportal-master/project/model/user/</a> course.schema.server.js
+      <a href="../../../../index.html">all files</a> / <a href="index.html">taportal-master/project/model/user/</a> application.schema.server.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>1/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>0/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>1/4</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -55,30 +55,51 @@
 10
 11
 12
-13</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+13
+14
+15
+16
+17
+18
+19
+20</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * Authored by seshasai on 11/5/2016.
  */
 &nbsp;
+module.exports = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >    var mongoose = require("mongoose");</span>
 &nbsp;
-module.exports = function () {
-    var mongoose = require("mongoose");
-&nbsp;
-    var CourseSchema = mongoose.Schema({
-        coursename: String
-    }, {collections: 'taportal.course'});
-    return CourseSchema;
+<span class="cstat-no" title="statement not covered" >    var ApplicationSchema = mongoose.Schema({</span>
+        _position:{type : mongoose.Schema.ObjectId, ref: "Position"},
+        _user : {type : mongoose.Schema.ObjectId, ref: "User"},
+        priority : Number,
+        previouslyTaken : String,
+        gradeObtained : {type : String,  enum: ['A', 'A-', 'B', 'B-', 'lower']},
+        beenTASemester : String ,
+        availability : {type : String,  enum: ['Fully Available', 'Looking for Co-ops']}, // Enum
+        remarks : String,
+        status :{type : String,  enum: ['Accepted', 'Rejected', 'In Progress']}// Enum Accepted Rejected
+}, {collections: 'taportal.application'});
+<span class="cstat-no" title="statement not covered" >    return ApplicationSchema;</span>
 };</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
