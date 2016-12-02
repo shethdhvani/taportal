@@ -15,23 +15,6 @@ module.exports= function(app, models){
     app.put("/api/position/semestername", updateDeadline);
     app.get("/api/findallpositions", findallpositions);
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    //                      Developed by Anvita                                                     //
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    app.get("/api/positionName/:positionName", findPositionByName);
-
-    function findPositionByName(req, res) {
-        var name = req.params.positionId;
-        positionModel
-            .findPositionByName(name)
-            .then(function (position) {
-                res.send(position);
-            }, function (error) {
-                res.statusCode(404).send(error);
-            });
-    }
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Srivatsav                                                      //
