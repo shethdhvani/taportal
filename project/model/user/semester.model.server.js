@@ -17,8 +17,7 @@ module.exports = function () {
         findAllSemesters: findAllSemesters,
         updateSemester: updateSemester,
         deleteSemester: deleteSemester,
-        findSemesterById: findSemesterById,
-         findSemesterByName: findSemesterByName
+        findSemesterById: findSemesterById
     };
 
     return api;
@@ -33,14 +32,6 @@ module.exports = function () {
     //                                                                                              //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // anvita
-   
-    function findSemesterByName(SemisterName) {
-        // return Course.findById({_id: courseId});
-        return Semester.findOne({semestername: SemisterName});
-    }
-
-    // end anvita
 
     // Author: Sesha Sai Srivatsav
     function updateSemester(semesterId, semester) {

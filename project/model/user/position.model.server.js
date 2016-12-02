@@ -18,13 +18,14 @@ module.exports = function () {
         updatePosition: updatePosition,
         updateDeadline: updateDeadline,
         deletePosition: deletePosition,
-        findPositionById: findPositionById,
-        findPositionByName: findPositionByName
+        findPositionById: findPositionById
     };
 
     return api;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
+=======
     //                      Developed by Anvita                                                     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,6 +35,7 @@ module.exports = function () {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
+>>>>>>> 766e3489ff283a2321abbe0a6a1ca03a1c73a7e9
     //                      Developed by Srivatsav                                                      //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 

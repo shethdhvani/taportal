@@ -16,6 +16,8 @@ module.exports= function(app, models){
     app.get("/api/findallpositions", findallpositions);
   //  app.get("/api/findPositionByCourseName", courseName);
 
+<<<<<<< HEAD
+=======
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Anvita                                                     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +35,7 @@ module.exports= function(app, models){
             });
     }
 
+>>>>>>> 766e3489ff283a2321abbe0a6a1ca03a1c73a7e9
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Srivatsav                                                      //
