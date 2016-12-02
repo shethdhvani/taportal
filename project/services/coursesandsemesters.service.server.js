@@ -52,7 +52,7 @@ module.exports= function(app, models){
                     res.sendStatus(200);
                 },
                 function (error) {
-                    res.sendStatus(404);
+                    res.statusCode(404).send(error);
                 }
             );
     }
@@ -84,7 +84,7 @@ module.exports= function(app, models){
                     res.json(courses);
                 },
                 function (error) {
-                    res.sendStatus(404);
+                    res.statusCode(404).send(error);
                 }
             );
     }
@@ -160,7 +160,7 @@ module.exports= function(app, models){
                     res.sendStatus(200);
                 },
                 function (error) {
-                    res.sendStatus(404);
+                    res.statusCode(404).send(error);
                 }
             );
     }
@@ -194,7 +194,7 @@ module.exports= function(app, models){
                     res.json(semesters);
                 },
                 function (error) {
-                    res.sendStatus(404);
+                    res.statusCode(404).send(error);
                 }
             );
     }
