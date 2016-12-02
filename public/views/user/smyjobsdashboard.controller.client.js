@@ -10,7 +10,7 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function SMyJobsDashboardController($routeParams, $location, UserService, $rootScope) {
+    function SMyJobsDashboardController($routeParams, $location, UserService, $rootScope,applicationsService) {
         var vm = this;
 
         vm.userId = $rootScope.currentUser._id;
@@ -25,6 +25,18 @@
                 .then(function (response) {
                     vm.user = response.data;
                 });
+
+// AUTHOR: Manognya
+            applicationsService
+                .findApplicationForUser(userId)
+                .then(function (response) {
+                    console.log("applications for student");
+                    console.log(response.data);
+                    vm.applications = response.data;
+                })
+
+
+
         }
         init();
 

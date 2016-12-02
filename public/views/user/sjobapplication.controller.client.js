@@ -9,12 +9,14 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function SJobApplicationController($routeParams, $location, UserService, $rootScope, CoursesandSemestersService, PositionService) {
+    function SJobApplicationController($routeParams, $location, UserService, $rootScope, CoursesandSemestersService, PositionService,applicationsService) {
         var vm = this;
 
         vm.userId = $rootScope.currentUser._id;
         var userId = $rootScope.currentUser._id;
         vm.logout = logout;
+
+        vm.createApplications=createApplications;
 
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
@@ -30,13 +32,66 @@
         init();
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        //                      Developed by Srivatsav                                                      //
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        // Author: Sesha Sai Srivatsav
+        function createApplications(app1,app2,app3){
+            console.log(app1);
+            console.log(app2);
+            console.log(app3);
 
-        
+            //console.log(app1._position);
+            PositionService.findPositionIDByTitle(app1._position)
+                .then(function(response){
+                    console.log(response);
+                    console.log(response.data);
+                    //console.log(JSON.parse(response.data));
+                    //console.log(response.data[1]._id);
+
+                    //console.log(response._id);
+                    var posId = response.data;
+
+                    applicationsService.createApplication(app1,vm.userId,posId)
+                        .then(function (response){
+                            console.log(response.data);
+                            vm.application1 = response.data;
+                        })
+                });
+            PositionService.findPositionIDByTitle(app2._position)
+                .then(function(response){
+                    console.log(response);
+                    console.log(response.data);
+                    //console.log(JSON.parse(response.data));
+                    //console.log(response.data[1]._id);
+
+                    //console.log(response._id);
+                    var posId2 = response.data;
+
+                    applicationsService.createApplication(app2,vm.userId,posId2)
+                        .then(function (response){
+                            console.log(response.data);
+                            vm.application2 = response.data;
+                        })
+                });
+            PositionService.findPositionIDByTitle(app3._position)
+                .then(function(response){
+                    console.log(response);
+                    console.log(response.data);
+                    //console.log(JSON.parse(response.data));
+                    //console.log(response.data[1]._id);
+
+                    //console.log(response._id);
+                    var posId3 = response.data;
+
+                    applicationsService.createApplication(app3,vm.userId,posId3)
+                        .then(function (response){
+                            console.log(response.data);
+                            vm.application3 = response.data;
+                        })
+                });
+
+
+
+        }
+
         function findAllSemesters() {
             CoursesandSemestersService
                 .findAllSemesters()
@@ -45,7 +100,7 @@
                     vm.semesterCount = vm.semesters.length;
                 })
         }
-        // Author: Sesha Sai Srivatsav
+
         function findAllCourses() {
             CoursesandSemestersService
                 .findAllCourses()
@@ -54,7 +109,7 @@
                     vm.courseCount = vm.courses.length;
                 })
         }
-        // Author: Sesha Sai Srivatsav
+
         function findAllPositions() {
             PositionService
                 .findAllPositions()
@@ -75,7 +130,7 @@
         }
 
 
-        // Author: Sesha Sai Srivatsav
+
         function logout() {
             UserService
                 .logout()
