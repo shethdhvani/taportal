@@ -35,14 +35,28 @@
 
 function createApplications(app1,app2,app3){
     console.log(app1);
-    console.log(app2);
-    console.log(app3);
+    //console.log(app2);
+    //console.log(app3);
 
-    applicationsService.createApplication(app1,vm.userId)
-        .then(function (response){
-            console.log(response.data);
-vm.application1 = response.data;
-    })
+    console.log(app1._position);
+    PositionService.findPositionIDByTitle(app1._position)
+        .then(function(response){
+            console.log(response);
+           console.log(response.data);
+            //console.log(JSON.parse(response.data));
+            //console.log(response.data[1]._id);
+
+            //console.log(response._id);
+            var posId = response.data;
+
+            applicationsService.createApplication(app1,vm.userId,posId)
+                .then(function (response){
+                    console.log(response.data);
+                    vm.application1 = response.data;
+                })
+        });
+
+
 }
         
         function findAllSemesters() {

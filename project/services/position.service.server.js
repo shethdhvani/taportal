@@ -14,7 +14,7 @@ module.exports= function(app, models){
     app.put("/api/position/:positionId", updatePosition);
     app.put("/api/position/semestername", updateDeadline);
     app.get("/api/findallpositions", findallpositions);
-
+    app.get("/api/application/:positionTitle",findPositionIDByTitle);
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Anvita                                                     //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,6 +145,19 @@ module.exports= function(app, models){
     //                      Developed by Manognya                                                      //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function findPositionIDByTitle(req,res) {
+    var posTitle = req.params.positionTitle;
+    positionModel. findPositionIDByTitle(posTitle)
+        .then(
+            function (position) {
+                console.log(position[0]);
+                console.log(position[0]._id);
+                res.send(position[0]._id);
+            },
+            function (error) {
+                res.sendStatus(404);
+            }
+        )}
 
 
 };

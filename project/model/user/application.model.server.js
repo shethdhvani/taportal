@@ -5,7 +5,7 @@ module.exports = function () {
 
     var mongoose = require("mongoose");
     var ApplicationSchema = require("./application.schema.server")();
-    var ApplicationModel = mongoose.model("ApplicationModel", ApplicationSchema);
+    var Application = mongoose.model("Application", ApplicationSchema);
 
 
     var api = {
@@ -22,17 +22,17 @@ module.exports = function () {
     function createApplication(application) {
         console.log("in model");
         console.log(application);
-        return  ApplicationModel.create(application);
+        return  Application.create(application);
     }
 
     function findApplicationForUser(userId) {
         console.log(userId);
-        return ApplicationModel.findById({_user: userId});
+        return Application.findById({_user: userId});
     }
 
     function updateApplication(applicationId,application) {
         delete application._id;
-        return ApplicationModel
+        return Application
             .update({_id: applicationId},{
                 $set: { _position: application._position,
                     priority : application.priority,
@@ -46,13 +46,13 @@ module.exports = function () {
     }
     
     function deleteApplication(applicationId) {
-        return ApplicationModel.remove({_id: applicationId});
+        return Application.remove({_id: applicationId});
     }
 
     function findApplicationById(applicationId) {
-        return ApplicationModel.findById({_id: applicationId});
+        return Application.findById({_id: applicationId});
     }
   /*  function findApplicationsForCourse(coursename) {
-        return ApplicationModel.findById({_position.course.: coursename});
+        return Application.findById({_position.course.: coursename});
     }*/
 };

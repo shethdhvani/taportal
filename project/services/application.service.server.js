@@ -6,7 +6,7 @@
  */
 module.exports= function(app, models) {
 
-    var ApplicationModel = models.ApplicationModel;
+    var applicationModel = models.applicationModel;
 
     app.post("/api/user/:userId/application", createApplication);
     app.get("/api/application/:applicationId", findApplicationById);
@@ -21,7 +21,7 @@ module.exports= function(app, models) {
 
         var application = req.body;
         console.log(application);
-        ApplicationModel
+        applicationModel
             .createApplication(application)
             .then(
                 function (application) {
@@ -37,7 +37,7 @@ module.exports= function(app, models) {
 
     function findApplicationById(req,res) {
         var aid=req.params.applicationId;
-        ApplicationModel.findApplicationById(aid)
+        applicationModel.findApplicationById(aid)
             .then(
                 function (application)
                 {
@@ -50,7 +50,7 @@ module.exports= function(app, models) {
     }
 
     function findApplicationForUser(req,res) {
-        ApplicationModel.findApplicationForUser(req.params.userId)
+        applicationModel.findApplicationForUser(req.params.userId)
             .then(
                 function (application) {
                     console.log(application[0].name);
@@ -66,7 +66,7 @@ module.exports= function(app, models) {
         var application = req.body;
         var aid=req.params.applicationId;
         console.log(application);
-        ApplicationModel.updateApplication(aid, application)
+        applicationModel.updateApplication(aid, application)
             .then(
                 function (status) {
                     console.log(status.data);
@@ -81,7 +81,7 @@ module.exports= function(app, models) {
     function deleteApplication(req,res) {
         var aid = req.params.applicationId;
 
-        ApplicationModel.deleteApplication(aid)
+        applicationModel.deleteApplication(aid)
             .then(function (status) {
                     res.send(200);
                 },

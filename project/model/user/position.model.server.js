@@ -19,7 +19,8 @@ module.exports = function () {
         updateDeadline: updateDeadline,
         deletePosition: deletePosition,
         findPositionById: findPositionById,
-        findPositionByName: findPositionByName
+        findPositionByName: findPositionByName,
+        findPositionIDByTitle:findPositionIDByTitle
     };
 
     return api;
@@ -99,5 +100,10 @@ module.exports = function () {
     //                      Developed by Manognya                                                      //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //Author: Manognya Koduganti
+function findPositionIDByTitle(title) {
+    return Position.find({course: title});
+
+}
 
 };

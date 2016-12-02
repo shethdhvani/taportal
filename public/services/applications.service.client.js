@@ -19,13 +19,16 @@
 
         return api;
 
-        function createApplication(application,uid) {
-            console.log("in client");
+        function createApplication(application,uid,posId) {
+            console.log("in client before");
             console.log(application);
             var url = "/api/user/"+uid+"/application";
 
             application._user=uid;
+            application._position=posId;
 
+            console.log("in client after assigning");
+            console.log(application);
             return $http.post(url, application);
         }
 
