@@ -14,7 +14,28 @@ module.exports= function(app, models){
     app.put("/api/position/:positionId", updatePosition);
     app.put("/api/position/semestername", updateDeadline);
     app.get("/api/findallpositions", findallpositions);
+  //  app.get("/api/findPositionByCourseName", courseName);
 
+<<<<<<< HEAD
+=======
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Anvita                                                     //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    app.get("/api/findPositionByCourseName/:courseName", findPositionByCourseName);
+
+    function findPositionByCourseName(req, res) {
+        var name = req.params.courseName;
+        positionModel
+            .findPositionByName(name)
+            .then(function (position) {
+                res.send(position);
+            }, function (error) {
+                res.statusCode(404).send(error);
+            });
+    }
+
+>>>>>>> 766e3489ff283a2321abbe0a6a1ca03a1c73a7e9
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Srivatsav                                                      //
@@ -75,7 +96,7 @@ module.exports= function(app, models){
     // function:deletePosition
     function deletePosition(req,res) {
 
-         
+
         positionModel
             .deletePosition(req.params.positionId)
             .then(function (stats) {
