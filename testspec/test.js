@@ -34,7 +34,8 @@ describe('Test For User', function() {
     });
 
 
-    it('should get all users error', function (done) {
+// anvita
+    it('should get all users negative path', function (done) {
         chai.request(server)
             .get('/api/findallusers/789')
             .end(function(err, res){
@@ -42,6 +43,7 @@ describe('Test For User', function() {
                 done();
             })
     });
+// end anvita
 
 
     it('should add a single user on /api/user POST', function(done) {
@@ -54,15 +56,36 @@ describe('Test For User', function() {
             })
     });
 
+    // anvita
+    it('should add a single user on /api/user POST negative path', function(done) {
+        chai.request(server)
+            .post('/api/user/no')
+            .end(function(err, res){
+                res.should.have.status(404);
+                done();
+            })
+    });
+    //end anvita
+
     it('user should be able to login', function (done) {
         chai.request(server)
             .get('/api/loggedIn')
+            .send({'username': 'zxc_test', 'password': 'zxc_test'})
             .end(function(err, res){
                 res.should.have.status(200);
                 done();
             })
     });
-
+// anvita
+    it('user should be able to login negative path', function (done) {
+        chai.request(server)
+            .get('/api/loggedIn/nooo')
+            .end(function(err, res){
+                res.should.have.status(404);
+                done();
+            })
+    });
+//    end anvita
 
     it('should not be able to get user', function (done) {
         chai.request(server)
@@ -74,6 +97,8 @@ describe('Test For User', function() {
 
     });
 
+
+
     it('should be able to get a user', function (done) {
         chai.request(server)
             .get('/api/user/'+"?username=zxc_test"+"&password=zxc_test")
@@ -84,6 +109,8 @@ describe('Test For User', function() {
 
     });
 
+
+
     it('should be able to get a user with username', function (done) {
         chai.request(server)
             .get('/api/user/'+"?username=zxc_test")
@@ -93,7 +120,19 @@ describe('Test For User', function() {
             })
 
     });
-
+//// anvita
+//
+//    it('should be able to get a user with username negative path', function (done) {
+//        chai.request(server)
+//            .get('/api/user/'+"?username=sdbjhslafhlchsldfhl")
+//            .end(function (err, res) {
+//                res.should.have.status(404);
+//                done();
+//            })
+//
+//    });
+//
+//// end anvita
 
     it('should add a single user on /api/user POST', function(done) {
         chai.request(server)
@@ -105,7 +144,26 @@ describe('Test For User', function() {
             });
     });
 
+// anvita
+    it('should add a single user on /api/user POST negative path(no same user name)', function(done) {
+        chai.request(server)
+            .post('/api/user')
+            .send({'username': 'abc_test', 'password': 'abc_test'})
+            .end(function(err, res){
+                res.should.have.status(200);
+                done();
+            });
+    });
 
+    //it('should add a single user on /api/user POST negative path(Error injection)', function(done) {
+    //    chai.request(server)
+    //        .post('/api/user')
+    //        .end(function(err, res){
+    //            res.should.have.status(200);
+    //            done();
+    //        });
+    //});
+    // end anvita
 
     it('should not register present user on /api/register POST', function(done) {
         chai.request(server)
@@ -144,6 +202,20 @@ describe('Test For User', function() {
             });
     });
 
+    // anvita
+
+    it('should register a user on /api/register POST negative path', function(done) {
+        chai.request(server)
+            .post('/api/register')
+            .end(function(err, res) {
+                res.should.have.status(400);
+                done();
+
+            });
+    });
+
+    // end anvita
+
     // it('should delete a user on /api/register delete', function(done) {
     //     chai.request(server)
     //         .delete('/api/user/' + newid)
@@ -163,19 +235,8 @@ describe('Test For User', function() {
             })
     });
 //anvita
-    it('should update a user negativepath', function (done) {
-        chai.request(server)
-            .get('/api/user/'+"?username=zxc_test")
-            .end(function(err, res){
-                chai.request(server)
-                    .put('/api/user/'+ res.body._id)
-                    .send({'firstName': 'NewFirstName'})
-                    .end(function (error, response) {
-                        response.should.have.status(500);
-                        done();
-                    });
-            });
-    });
+
+
 
 
     it('should update a user', function (done) {
@@ -199,6 +260,24 @@ describe('Test For User', function() {
                     });
             });
     });
+
+    // anvita
+    //it('should update a user negative path', function (done) {
+    //    chai.request(server)
+    //        .get('/api/user/'+"?username=zxc_test1")
+    //        .end(function(err, res){
+    //            chai.request(server)
+    //                .put('/api/user/'+ res.body._id)
+    //                .send({
+    //
+    //                })
+    //                .end(function (error, response) {
+    //                    response.should.have.status(200);
+    //                    done();
+    //                });
+    //        });
+    //});
+    // end anviat
 
     it('should update a user negative 2', function (done) {
         chai.request(server)
@@ -256,6 +335,36 @@ describe('Test For User', function() {
             });
         });
     });
+
+
+  //  anvita
+  //
+  //  it('should add current course to a user negative path', function (done) {
+  //
+  //                  //Start
+  //                  //Author: anvita
+  //                  //Adding current course only for zxc_test1 user. Thus commenting the below line
+  //                  // .put('/api/user/addcurrentcourse/'+ res.body[0]._id)
+  //                   chai.request(server)
+  //                  .put('/api/user/addcurrentcourse/'+ "sdsadasa")
+  //                  //End
+  //                  .send({  username: "zxc_test1",
+  //                      password : "zxc_test1",
+  //                      firstName: "fn_test",
+  //                      lastName: "ln_test",
+  //                      email: "e@e_test.com",
+  //                      usertype: "Student",
+  //                      gpa: 1,
+  //                      coursesTaken: ["a_test", "b_test"],
+  //                      currentCourses: ["c_test", "d_test"]})
+  //                  .end(function (error, response) {
+  //                      response.should.have.status(200);
+  //                      done();
+  //                  });
+  //
+  //  });
+
+    // end anvita
 
 ///api/user/addcourse/:userId
     it('should add previous course to a user', function (done) {
@@ -327,6 +436,19 @@ describe('Test For User', function() {
             });
     });
 
+    //a nvita
+    it('should find user by userid negative path', function (done) {
+
+                chai.request(server)
+                    .get('/api/user/'+ '123')
+                    .end(function (error, response) {
+                        response.should.have.status(404);
+                        done();
+                    })
+done();
+    });
+    // end anvita
+
     it('user should be able to logout', function (done) {
         chai.request(server)
             .post('/api/logout')
@@ -345,6 +467,17 @@ describe('Test For User', function() {
             })
         done();
     });
+
+    //it('should find all users negative path', function (done) {
+    //    chai.request(server)
+    //        .get('/api/findallusers')
+    //        .send({})
+    //        .end(function(err, res){
+    //            res.should.have.status(200);
+    //            done();
+    //        })
+    //
+    //});
 
 
     //Author: Dhvani
@@ -369,6 +502,19 @@ describe('Test For User', function() {
                 done();
             });
         });
+    });
+
+// anvita
+
+    it('should delete user course negative path', function (done) {
+
+                chai.request(server)
+                    .put('/api/user/deleteusercourse/')
+                    .end(function (error, response) {
+                        response.should.have.status(400);
+                        done();
+                    });
+        done();
     });
 
 
