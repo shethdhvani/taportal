@@ -20,6 +20,7 @@ module.exports = function () {
         deletePosition: deletePosition,
         findPositionById: findPositionById,
         findPositionIDByTitle:findPositionIDByTitle,
+        findPositionByName: findPositionByName
     };
 
     return api;
