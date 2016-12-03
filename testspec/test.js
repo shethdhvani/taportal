@@ -204,15 +204,15 @@ describe('Test For User', function() {
 
     // anvita
 
-    it('should register a user on /api/register POST negative path', function(done) {
-        chai.request(server)
-            .post('/api/register')
-            .end(function(err, res) {
-                res.should.have.status(400);
-                done();
-
-            });
-    });
+    // it('should register a user on /api/register POST negative path', function(done) {
+    //     chai.request(server)
+    //         .post('/api/register')
+    //         .end(function(err, res) {
+    //             res.should.have.status(400);
+    //             done();
+    //
+    //         });
+    // });
 
     // end anvita
 
