@@ -1,0 +1,45 @@
+
+
+
+<div class="container">
+    <h1>Appplications for course</h1>
+    <div ng-if="model.success"
+         class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+
+    {{model.applications}}
+
+    {{model.abc}}
+
+
+
+
+
+</div>
+
+
+<!-------------------------------------------------->
+<!----------------- Footer ------------------------->
+<!--------------------------------------------------->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a ng-click = "model.logout()">Logout</a>
+            </a>
+        </p>
+
+        <p class="navbar-text pull-left">
+            <a href="#/fprofile">
+                <span>Back to Profile</span>
+            </a>
+        </p>
+
+    </div>
+</nav>

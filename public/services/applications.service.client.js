@@ -13,11 +13,23 @@
             deleteApplication: deleteApplication,
             updateApplication:updateApplication ,
             findApplicationById:findApplicationById,
-            findApplicationForUser:findApplicationForUser
+            findApplicationForUser:findApplicationForUser,
+            getApplicationsForPosition: getApplicationsForPosition
         };
 
 
         return api;
+
+    // anvita
+
+        function getApplicationsForPosition(posId) {
+
+
+            var url = "/api/ApplicationForPosition/" +posId;
+
+            return $http.get(url);
+        }
+        // end anvita
 
         function createApplication(application,uid,posId) {
             console.log("in client before");

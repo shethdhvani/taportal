@@ -14,7 +14,8 @@ module.exports = function () {
         updateApplication: updateApplication,
         deleteApplication: deleteApplication,
         findApplicationForUser: findApplicationForUser,
-        findApplicationById: findApplicationById
+        findApplicationById: findApplicationById,
+        findApplicationsForPosition: findApplicationsForPosition
     };
 
     return api;
@@ -53,6 +54,14 @@ module.exports = function () {
     function findApplicationById(applicationId) {
         return Application.findById({_id: applicationId});
     }
+
+        //anvita
+    function findApplicationsForPosition(PosId) {
+        console.log("findApplicationsForPosition");
+        console.log(PosId);
+        return Application.find({_position: PosId});
+    }
+    // anvita end
   /*  function findApplicationsForCourse(coursename) {
         return Application.findById({_position.course.: coursename});
     }*/

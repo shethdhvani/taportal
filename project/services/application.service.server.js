@@ -16,6 +16,28 @@ module.exports= function(app, models) {
     app.get("/api/user/:userId/application", findApplicationForUser);
 
 
+    // author: ANvita
+
+   // var url = "/api/ApplicationForPosition/" +posId;
+    app.get("/api/ApplicationForPosition/:applicationId", findApplicationsForPosition);
+
+    function findApplicationsForPosition(req,res) {
+        var aid=req.params.applicationId;
+
+        applicationModel.findApplicationsForPosition(aid)
+            .then(
+                function (application)
+                {
+                    res.json(application);
+                },
+                function (error) {
+                    res.sendStatus(400).send(err);
+                }
+            );
+    }
+
+
+
     //Author: Manognya
     app.get("/api/application/:positionTitle",findPositionIDByTitle);
 
