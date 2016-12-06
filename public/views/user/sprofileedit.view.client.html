@@ -1,8 +1,7 @@
+<div class="container-fluid">
 
-
-
-<div class="container">
     <h1>Student Profile Edit</h1>
+
     <div ng-if="model.success"
          class="alert alert-success">
         {{model.success}}
@@ -13,69 +12,87 @@
         {{model.error}}
     </div>
 
-    <form>
-        <div class="form-group">
+    <form novalidate name="model.myform">
+        <!----------------------------------------------------------------------------------------->
             <label for="username">Username</label>
             <input ng-model="model.user.username"
                    type="text"
                    class="form-control"
-                   id="username" placeholder="walice">
-        </div>
-    </form>
+                   id="username" placeholder="walice" required>
+            <!-- This field is not editable-->
 
-    <form>
-        <div class="form-group">
+
+            <br/>
+
+        <!----------------------------------------------------------------------------------------->
             <label for="email">Email address</label>
             <input ng-model="model.user.email"
                    type="email"
+                   name = "email"
                    class="form-control"
                    id="email"
-                   placeholder="alice.wonderland@unicorn.com">
-        </div>
-    </form>
+                   placeholder="alice.wonderland@unicorn.com" required>
 
-    <form>
-        <div class="form-group">
+            <span   class="alert-class"
+                    ng-show="model.myform.email.$invalid">
+                    {{model.alert}}
+            </span>
+        <!----------------------------------------------------------------------------------------->
+            <br/>
+
+
             <label for="first-name">First Name</label>
             <input ng-model="model.user.firstName"
                    type="text"
+                   name="firstName"
                    class="form-control"
                    id="first-name"
-                   placeholder="Alice">
-        </div>
-    </form>
+                   placeholder="Alice" required>
+            <span   class="alert-class"
+                    ng-show="model.myform.firstName.$invalid">
+                    {{model.alert}}
+            </span>
+        <!----------------------------------------------------------------------------------------->
+            <br/>
 
-    <form>
-        <div class="form-group">
             <label for="last-name">Last Name</label>
             <input ng-model="model.user.lastName"
+                   name="lastName"
                    type="text"
                    class="form-control"
                    id="last-name"
-                   placeholder="Wonderland">
-        </div>
-    </form>
+                   placeholder="Wonderland" required>
+
+            <span   class="alert-class"
+                    ng-show="model.myform.lastName.$invalid">
+                    {{model.alert}}
+            </span>
+
+        <!----------------------------------------------------------------------------------------->
+
+            <br/>
 
 
-    <form>
-        <div class="form-group">
+
             <label for="last-name">GPA</label>
             <input ng-model="model.user.gpa"
                    type="text"
+                   name="gpa"
                    class="form-control"
                    id="gpa"
-                   placeholder="Wonderland">
-        </div>
-    </form>
+                   placeholder="Wonderland" required>
 
-    <!------------------------------------------------------------------------>
-    <!-- Current Courses-->
-    <!-- Dropdown is populated from the database -->
+            <span   class="alert-class"
+                    ng-show="model.myform.gpa.$invalid">
+                    {{model.alert}}
+            </span>
+            <br/>
 
-    <form>
-        <div class="form-group">
+        <!------------------------------------------------------------------------>
+        <!-- Current Courses-->
+        <!-- Dropdown is populated from the database -->
 
-                <!--Dropdown to select courses-->
+            <!--Dropdown to select courses-->
                 <div class="col-sm-8 col-md-8">
                     <label for="username">Current Courses</label>
                     <select type="string"
@@ -103,16 +120,14 @@
                 </a>
             </p>
 
-        </div>
-    </form>
 
 
-    <!------------------------------------------------------------------------>
-    <!-- Already Taken Courses-->
-         <!-- Dropdown is populated from the database -->
+            <br/>
+        <!----------------------------------------------------------------------------------------->
+        <!-- Already Taken Courses-->
+            <!-- Dropdown is populated from the database -->
 
-    <form>
-        <div class="form-group">
+
 
                 <!--Dropdown to select courses-->
                 <div class="col-sm-8 col-md-8">
@@ -132,7 +147,7 @@
                 </div>
 
 
-
+        <!----------------------------------------------------------------------------------------->
             <!-- Display Courses-->
             <p ng-repeat="course in model.user.coursesTaken">{{course}}
                 <a class="glyphicon glyphicon-remove makeblack"
@@ -141,12 +156,12 @@
                 </a>
             </p>
 
-        </div>
-    </form>
 
 
 
-    <!------------------------------------------------------------------------>
+
+            <br/>
+        <!----------------------------------------------------------------------------------------->
     <!-- Resume Upload -->
     <b>Upload Resume:</b>
 
@@ -169,49 +184,55 @@
         <!--------------------->
     </form>
 
-    <!-------------------------------------------------->
-
-
-
+        <!----------------------------------------------------------------------------------------->
     <br>
     <br>
     <br>
-    <!-- Phone Number-->
-    <form>
-        <div class="form-group">
+        <!----------------------------------------------------------------------------------------->
+            <!-- Phone Number-->
+
+
             <label for="last-name">Phone Number</label>
             <input ng-model="model.user.phone"
                    type="text"
+                   name="phone"
                    class="form-control"
                    id="phone"
                    placeholder="617-447-9680">
-        </div>
-    </form>
+            <span   class="alert-class"
+                    ng-show="model.myform.phone.$invalid">
+                    {{model.alert}}
+            </span>
 
-    <!-- About Myself-->
-    <form>
-        <div class="form-group">
+        <br>
+        <!----------------------------------------------------------------------------------------->
+            <!-- About Myself-->
+
             <label for="last-name">About Myself</label>
             <input ng-model="model.user.aboutMyself"
                    type="text"
                    class="form-control"
                    id="About Myself"
                    placeholder="Few Lines about myself">
-        </div>
+
+        <!----------------------------------------------------------------------------------------->
+
+            <button ng-click="model.updateUser(model.user)"
+                    class="btn btn-primary btn-block" type="submit">
+                Update Profile
+            </button>
+
     </form>
-
-    <button ng-click="model.updateUser(model.user)"
-            class="btn btn-primary btn-block" type="submit">Update Profile</button>
-
-
+        <!----------------------------------------------------------------------------------------->
 
     <a ng-click = "model.logout()"class="btn btn-danger btn-block">Logout</a>
+        <!----------------------------------------------------------------------------------------->
     <a class="btn btn-danger btn-block "
        ng-click = "model.deleteUser()">un-register</a>
+        <!----------------------------------------------------------------------------------------->
 
 </div>
 
-</div>
 <!-------------------------------------------------->
 <!----------------- Footer ------------------------->
 <!--------------------------------------------------->
