@@ -23,20 +23,24 @@
             findAllCourses();
             findAllSemesters();
             findAllPositions();
-            UserService
-                .findUserById(userId)
+
+            applicationsService
+                .findApplicationForUser(userId)
                 .then(function (response) {
-                    vm.user = response.data;
-                });
+                    console.log("applications for student");
+                    console.log(response.data);
+                    vm.applications = response.data;
+                    vm.application1 = vm.applications[0];
+                    console.log(vm.application1);
+        })
         }
         init();
 
 
-
-        function createApplications(app1,app2,app3){
+        function createApplications(app1){
             console.log(app1);
-            console.log(app2);
-            console.log(app3);
+           // console.log(app2);
+            //console.log(app3);
 
             //console.log(app1._position);
             PositionService.findPositionIDByTitle(app1._position)
@@ -55,7 +59,7 @@
                             vm.application1 = response.data;
                         })
                 });
-            PositionService.findPositionIDByTitle(app2._position)
+           /* PositionService.findPositionIDByTitle(app2._position)
                 .then(function(response){
                     console.log(response);
                     console.log(response.data);
@@ -87,7 +91,7 @@
                             vm.application3 = response.data;
                         })
                 });
-
+*/
 
 
         }

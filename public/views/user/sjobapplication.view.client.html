@@ -32,6 +32,111 @@
             <th>Remarks</th>
 
 
+{{model.applications}}
+
+           <!-- <tr ng-repeat="application in model.applications">
+
+                &lt;!&ndash;&#45;&#45; Priority &#45;&#45;&ndash;&gt;
+                <td>
+                    <select type="Number"
+                            class="form-control"
+                            placeholder="priority"
+                            ng-model="application.priority">
+                        {{application.priority}}
+
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </td>
+
+                &lt;!&ndash;-&#45;&#45; TA Role &#45;&#45;&#45;&#45;&ndash;&gt;
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="TA Role"
+                            ng-model="application._position">
+                        <option ng-repeat="position in model.positions">{{position.course}}</option>
+
+                    </select>
+                </td>
+
+                &lt;!&ndash; TODO &ndash;&gt;
+                &lt;!&ndash; Number of positions available&ndash;&gt;
+                <td>
+                    {{position.number}}
+                </td>
+
+                &lt;!&ndash; TODO &ndash;&gt;
+                &lt;!&ndash; TA position is for given semester&ndash;&gt;
+                <td>
+                    {{position.semester}}
+                </td>
+
+                &lt;!&ndash;Previously taken this semester&ndash;&gt;
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="Previous Semester where you took the course"
+                            ng-model="application.previouslyTaken">
+
+                        <option ng-repeat="semester in model.semesters">{{semester.semestername}}</option>
+
+                    </select>
+                </td>
+
+                &lt;!&ndash;Grade Obtained&ndash;&gt;
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="Grade Obtained"
+                            ng-model="application.gradeObtained">
+
+                        <option value="A">A</option>
+                        <option value="A-">A-</option>
+                        <option value="B">B</option>
+                        <option value="B-">B-</option>
+                        <option value="lower">lower</option>
+                    </select>
+                </td>
+
+                &lt;!&ndash;Semester&ndash;&gt;
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="semestername"
+                            ng-model="application.beenTASemester">
+
+                        <option ng-repeat="semester in model.semesters">{{semester.semestername}}</option>
+                    </select>
+                </td>
+
+
+                &lt;!&ndash;Availability&ndash;&gt;
+                <td>
+                    <select type="string"
+                            class="form-control"
+                            placeholder="Student availability"
+                            ng-model="application.availability">
+
+                        <option value="Fully Available">Fully Available</option>
+                        <option value="Looking for Co-ops">Looking for Co-ops</option>
+
+                    </select>
+                </td>
+
+                &lt;!&ndash;Remarks&ndash;&gt;
+                <td><input type="text"
+                           ng-model="application.remarks"
+                           placeholder="Enter your remarks"/></td>
+
+                <td><button ng-click="model.createApplications(application)" class="btn btn-block btn-danger">
+                    Create </button></td>
+
+            </tr>-->
+
+
+
             <!-------------------------------------->
             <!----           Table Row 1        ---->
             <!-------------------------------------->
