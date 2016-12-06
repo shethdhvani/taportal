@@ -9,14 +9,13 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function FProfileController($routeParams, $location, UserService, $rootScope,PositionService) {
+    function FProfileController($routeParams, $location, UserService, $rootScope,PositionService, applicationsService) {
         var vm = this;
-         //anvita
-        vm.applicationsforCourse;
-        vm.abc = "p";
-        vm.position;
+        vm.rateStudent = rateStudent;
+        var faculty;
+        vm.apps;
         vm.getApplications = getApplications;
-        // anvita end
+        vm.applications;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
         vm.userId = $rootScope.currentUser._id;
@@ -35,9 +34,68 @@
         init();
 
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////////////////////////////////////////////
         //                      Developed by Anvita                                                  //
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        function rateStudent(StudentID, rating) {
+
+            UserService
+                .findUserById1(StudentID)
+                .then(
+                    function (response) {
+
+                        //$rootScope.apps = response.data;
+                        //init();
+
+
+                        //console.log(vm.applications);
+
+                       var  rating1 = response.data.rating;
+                        console.log("Response.data.rating rating");
+                        console.log(rating1);
+
+                        var ratingFull =   {
+                            _user : faculty._id, //in model
+                            //ratedBy: String,
+                            rating: rating
+                        };
+
+                        rating1.push(ratingFull);
+
+
+
+                      var ii = {
+                          array12: rating1
+                      }
+
+
+
+                        UserService
+                            .rateStudent(StudentID, ii);
+                            //.then(
+                            //    function (response1) {
+                            //
+                            //        //$rootScope.apps = response.data;
+                            //        //init();
+                            //
+                            //        console.log("Response.data  for student updtate asd");
+                            //        console.log(response1.data);
+                            //        //console.log(vm.applications);
+                            //
+                            //    });
+
+                    });
+
+
+
+
+        }
+
+
+
+
+
         function getApplications(position) {
 
             applicationsService
@@ -45,14 +103,65 @@
                 .then(
                     function (response) {
 
-                        vm.applications = response.data;
-                        vm.abc = "123";
-                        console.log("Response.data");
-                        console.log(vm.applications);
+                    var apps1 = response.data;
+                        var apps2 = [] ;
 
-                        $location.url("/applicationsForCource");
+                        for (i = 0; i < apps1.length; i++) {
+                            var sid = apps1[i]._user;
+                            var ratingGiven = 1;
+
+                            UserService
+                                .findUserById1(sid)
+                                .then(
+                                    function (response) {
+
+
+                                        var  rating1 = response.data.rating;
+                                        var sum = 0;
+
+                                        for (i1 = 0; i1 < rating1.length; i1++) {
+                                            sum = sum + parseInt(rating1[i1].rating);
+                                            console.log(ratingGiven);
+                                        }
+
+
+                                            ratingGiven = parseInt(sum/rating1.length);
+                                        console.log(ratingGiven);
+
+                                        if(ratingGiven < 1){
+                                            ratingGiven = 1;
+                                        }
+
+                                    });
+
+                            var app1 = {
+
+                                "_id":apps1[i]._id,"priority":apps1[i].priority,"_position":apps1[i]._position,
+                                "previouslyTaken":apps1[i].previouslyTaken,"gradeObtained":apps1[i].gradeObtained,
+                                "beenTASemester":apps1[i].beenTASemester,"availability": apps1[i].availability,
+                                "_user":apps1[i]._user,"__v":apps1[i].__v,"rating":apps1[i].rating, "ratingvalue": ratingGiven
+
+                            };
+
+                            apps2.push(app1);
+                        }
+
+
+                        console.log(apps2);
+
+
+
+                        $rootScope.apps = apps2;
+                        init();
+
+                        //console.log("Response.data");
+                        //console.log(vm.applications);
+
+
+                       $location.url("/applicationsForCource");
                     });
         }
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         //                      Developed by Srivatsav                                                      //

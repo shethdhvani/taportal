@@ -31,6 +31,10 @@ module.exports= function(app, models){
     app.put("/api/user/deletecurrentcourse/:userId",deleteCurrentCourse);
     app.get('/api/findallusers', findallusers);
     app.post("/api/resumeupload",upload.single('myResume'), uploadResume);
+    // anvita
+    app.get("/api/user1/:userId", findUserById1);
+    // var url = "/api/rateStudent/" +StudentID+ "/rating/" +rating+ "/byFaculty/" + facultyId;
+    app.put("/api/rateStudent/:StudentID", rateStudentByFaculty);
 
 
     passport.use('TaPortal', new LocalStrategy(localStrategy));
@@ -397,6 +401,51 @@ module.exports= function(app, models){
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //                      Developed by Anvita                                                      //
     ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  
+
+    function rateStudentByFaculty(req,res) {
+
+        var sid = req.params.StudentID;
+     
+        var rating = req.body.array12;
+
+        console.log("asfcsdvcvfdhbdfxzsdvgsdbv");
+        console.log(rating);
+
+
+        userModel.rateStudentByFaculty(sid, rating)
+            .then(
+                function (student)
+                {
+
+                    res.json(student);
+                },
+                function (error) {
+                    res.sendStatus(400).send(err);
+                }
+            );
+    }
+
+
+    function findUserById1(req, res){
+        var id = req.params.userId;
+
+        userModel
+            .findUserById(id)
+            .then(function (user) {
+                    res.json(user);
+
+                },
+                function (error) {
+                    res.statusCode(404).send(error);
+                });
+
+    }
+
+
+
     // uploadResume:
     // Author: Anvita
     // Description : To be written by the author
