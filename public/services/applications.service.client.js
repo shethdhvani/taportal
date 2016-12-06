@@ -51,7 +51,7 @@
         function updateApplication(application) {
             // console.log("in client");
             var url ="/api/application/"+application._id;
-            console.log("in client "+application.name);
+             
             return $http.put(url,application);
         }
 

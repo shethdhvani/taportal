@@ -54,40 +54,49 @@
 
                 })
         }
+
         function createApplications(app1, app2, app3){
-            PositionService.findPositionIDByTitle(app1._position)
-                .then(function(response){
-                    var posId = response.data;
+            applicationsService
+                .findApplicationForUser(userId)
+                .then(function (response) {
 
-                    applicationsService.createApplication(app1,vm.userId,posId)
-                        .then(function (response){
-                            console.log(response.data);
-                            vm.application1 = response.data;
-                        })
-                });
+                    if(response.data.length==0 || response.data.length==1 ||response.data.length==2){
+                        PositionService.findPositionIDByTitle(app1._position)
+                            .then(function(response){
+                                var posId = response.data;
 
-            PositionService.findPositionIDByTitle(app2._position)
-                .then(function(response){
-                   var posId2 = response.data;
+                                applicationsService.createApplication(app1,vm.userId,posId)
+                                    .then(function (response){
 
-                    applicationsService.createApplication(app2,vm.userId,posId2)
-                        .then(function (response){
-                            console.log(response.data);
-                            vm.application2 = response.data;
-                        })
-                });
-            PositionService.findPositionIDByTitle(app3._position)
-                .then(function(response){
+                                        vm.application1 = response.data;
+                                    })
+                            });
 
-                    var posId3 = response.data;
+                        PositionService.findPositionIDByTitle(app2._position)
+                            .then(function(response){
+                                var posId2 = response.data;
 
-                    applicationsService.createApplication(app3,vm.userId,posId3)
-                        .then(function (response){
-                            console.log(response.data);
-                            vm.application3 = response.data;
-                        })
-                });
+                                applicationsService.createApplication(app2,vm.userId,posId2)
+                                    .then(function (response){
 
+                                        vm.application2 = response.data;
+                                    })
+                            });
+                        PositionService.findPositionIDByTitle(app3._position)
+                            .then(function(response){
+
+                                var posId3 = response.data;
+
+                                applicationsService.createApplication(app3,vm.userId,posId3)
+                                    .then(function (response){
+
+                                        vm.application3 = response.data;
+                                    })
+                            });
+                    } else{
+                        vm.updatedmessage = "Maximum applications for course = 3. please delete !";
+                    }
+                })
 
         }
 

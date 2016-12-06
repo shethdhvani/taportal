@@ -58,7 +58,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="TA Role"
-                            ng-model="model.application1._position">
+                            ng-model="application1._position">
 
                         <!-- Drop down values -->
                         <option ng-repeat="position in model.positions">{{position.course}}</option>
@@ -67,17 +67,19 @@
                 </td>
 
                 <!----- TA Role Name ------>
-                <td>
-                    <select type="string"
-                            class="form-control"
-                            placeholder="TA Role"
-                            ng-model="model.application1._position">
+                <!--<td>-->
+                    <!--<select type="string"-->
+                            <!--class="form-control"-->
+                            <!--placeholder="TA Role"-->
+                            <!--ng-model="model.application1._position">-->
 
-                        <!-- Drop down values -->
-                        <option ng-repeat="position in model.positions">{{position.course}}</option>
+                        <!--&lt;!&ndash; Drop down values &ndash;&gt;-->
+                        <!--<option ng-repeat="position in model.positions">{{position.course}}</option>-->
 
-                    </select>
-                </td>
+                    <!--</select>-->
+                <!--</td>-->
+
+
                 <!-- TODO -->
                 <!-- Number of positions available-->
                 <td>
@@ -164,7 +166,7 @@
                     <select type="number"
                             class="form-control"
                             placeholder="priority"
-                            ng-model="application2.priority">
+                            ng-model="model.application2.priority">
 
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -183,17 +185,17 @@
                     </select>
                 </td>
                 <!----- TA Role Name ------>
-                <td>
-                    <select type="string"
-                            class="form-control"
-                            placeholder="TA Role"
-                            ng-model="model.application2._position">
+                <!--<td>-->
+                    <!--<select type="string"-->
+                            <!--class="form-control"-->
+                            <!--placeholder="TA Role"-->
+                            <!--ng-model="model.application2._position">-->
 
-                        <!-- Drop down values -->
-                        <option ng-repeat="position in model.positions">{{position.course}}</option>
+                        <!--&lt;!&ndash; Drop down values &ndash;&gt;-->
+                        <!--<option ng-repeat="position in model.positions">{{position.course}}</option>-->
 
-                    </select>
-                </td>
+                    <!--</select>-->
+                <!--</td>-->
                 <!-- TODO -->
                 <!-- Number of positions available-->
                 <td>
@@ -211,7 +213,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="Previous Semester where you took the course"
-                            ng-model="application2.previouslyTaken">
+                            ng-model="model.application2.previouslyTaken">
 
                         <option ng-repeat="semester in model.semesters">{{semester.semestername}}</option>
 
@@ -223,7 +225,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="Grade Obtained"
-                            ng-model="application2.gradeObtained">
+                            ng-model="model.application2.gradeObtained">
 
                         <option value="A">A</option>
                         <option value="A-">A-</option>
@@ -238,7 +240,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="semestername"
-                            ng-model="application2.beenTASemester">
+                            ng-model="model.application2.beenTASemester">
 
                         <option ng-repeat="semester in model.semesters">{{semester.semestername}}</option>
                     </select>
@@ -250,7 +252,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="Student availability"
-                            ng-model="application2.availability">
+                            ng-model="model.application2.availability">
 
                         <option value="Fully Available">Fully Available</option>
                         <option value="Looking for Co-ops">Looking for Co-ops</option>
@@ -260,7 +262,7 @@
 
                 <!--Remarks-->
                 <td><input type="text"
-                           ng-model="application2.remarks"
+                           ng-model="model.application2.remarks"
                            placeholder="Enter your remarks"/></td>
 
 
@@ -279,7 +281,7 @@
                     <select type="number"
                             class="form-control"
                             placeholder="priority"
-                            ng-model="application3.priority">
+                            ng-model="model.application3.priority">
 
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -298,17 +300,17 @@
                     </select>
                 </td>
                 <!----- TA Role Name ------>
-                <td>
-                    <select type="string"
-                            class="form-control"
-                            placeholder="TA Role"
-                            ng-model="model.application3._position">
+                <!--<td>-->
+                    <!--<select type="string"-->
+                            <!--class="form-control"-->
+                            <!--placeholder="TA Role"-->
+                            <!--ng-model="model.application3._position">-->
 
-                        <!-- Drop down values -->
-                        <option ng-repeat="position in model.positions">{{position.course}}</option>
+                        <!--&lt;!&ndash; Drop down values &ndash;&gt;-->
+                        <!--<option ng-repeat="position in model.positions">{{position.course}}</option>-->
 
-                    </select>
-                </td>
+                    <!--</select>-->
+                <!--</td>-->
                 <!-- TODO -->
                 <!-- Number of positions available-->
                 <td>
@@ -326,7 +328,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="Previous Semester where you took the course"
-                            ng-model="application3.previouslyTaken">
+                            ng-model="model.application3.previouslyTaken">
 
                         <option ng-repeat="semester in model.semesters">{{semester.semestername}}</option>
 
@@ -338,7 +340,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="Grade Obtained"
-                            ng-model="application3.gradeObtained">
+                            ng-model="model.application3.gradeObtained">
 
                         <option value="A">A</option>
                         <option value="A-">A-</option>
@@ -353,7 +355,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="semestername"
-                            ng-model="application3.beenTASemester">
+                            ng-model="model.application3.beenTASemester">
 
                         <option ng-repeat="semester in model.semesters">{{semester.semestername}}</option>
                     </select>
@@ -365,7 +367,7 @@
                     <select type="string"
                             class="form-control"
                             placeholder="Student availability"
-                            ng-model="application3.availability">
+                            ng-model="model.application3.availability">
 
                         <option value="Fully Available">Fully Available</option>
                         <option value="Looking for Co-ops">Looking for Co-ops</option>
@@ -375,7 +377,7 @@
 
                 <!--Remarks-->
                 <td><input type="text"
-                           ng-model="application3.remarks"
+                           ng-model="model.application3.remarks"
                            placeholder="Enter your remarks"/></td>
 
 
