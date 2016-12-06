@@ -176,6 +176,30 @@
     <br>
     <br>
     <br>
+    <!-- Phone Number-->
+    <form>
+        <div class="form-group">
+            <label for="last-name">Phone Number</label>
+            <input ng-model="model.user.phone"
+                   type="text"
+                   class="form-control"
+                   id="phone"
+                   placeholder="617-447-9680">
+        </div>
+    </form>
+
+    <!-- About Myself-->
+    <form>
+        <div class="form-group">
+            <label for="last-name">About Myself</label>
+            <input ng-model="model.user.aboutMyself"
+                   type="text"
+                   class="form-control"
+                   id="About Myself"
+                   placeholder="Few Lines about myself">
+        </div>
+    </form>
+    
     <button ng-click="model.updateUser(model.user)"
             class="btn btn-primary btn-block" type="submit">Update Profile</button>
 
