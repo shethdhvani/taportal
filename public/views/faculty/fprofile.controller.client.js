@@ -46,15 +46,12 @@
                 .then(
                     function (response) {
 
-                        //$rootScope.apps = response.data;
-                        //init();
+             
 
-                           console.log(response.data);
-                        //console.log(vm.applications);
+
 
                        var  rating1 = response.data.rating;
-                        console.log("Response.data.rating rating");
-                     //   console.log(response.data);
+
 
                         var ratingFull =   {
                             _user : faculty._id, //in model
