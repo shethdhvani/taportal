@@ -14,7 +14,7 @@
             updateApplication:updateApplication ,
             findApplicationById:findApplicationById,
             findApplicationForUser:findApplicationForUser,
-            getApplicationsForPosition: getApplicationsForPosition
+            getApplicationsForPosition: getApplicationsForPosition,
         };
 
 

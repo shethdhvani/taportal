@@ -12,20 +12,15 @@
 
     function SMyJobsDashboardController($routeParams, $location, UserService, $rootScope,applicationsService,PositionService) {
         var vm = this;
-        vm.applicationnames=[];
+
         vm.userId = $rootScope.currentUser._id;
         var userId = $rootScope.currentUser._id;
         vm.logout = logout;
+        vm.deleteapplication=deleteapplication;
 
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
-
-            UserService
-                .findUserById(userId)
-                .then(function (response) {
-                    vm.user = response.data;
-                });
-
+            vm.applicationnames=[];
       // AUTHOR: Manognya
             applicationsService
                 .findApplicationForUser(userId)
@@ -33,39 +28,42 @@
                     console.log("applications for student");
                     console.log(response.data);
                     vm.applications = response.data;
-                    application_name(vm.applications);
-                   // vm.application1 = vm.applications[0];
-                    //vm.application2 = vm.applications[1];
-                    //vm.application3 = vm.applications[2];
 
-                    //console.log("each application:");
-                    //console.log(vm.application1);
+                    for (var i = 0; i < vm.applications.length; i++) {
+                        PositionService.findPositionById(vm.applications[i]._position)
+                            .then(function(position){
+                                var obj={name:position.data.course};
+                                vm.applicationnames.push(obj);
+                            });
+                    }
 
-                })
-
-
-
+                });
         }
         init();
 
 
- function application_name(applications){
-    console.log("in application_name client");
-    for (var i = 0; i < applications.length; i++) {
-        console.log("in application names");
-        console.log(applications[i]._position);
-        PositionService.findPositionById(applications[i]._position)
-            .then(function(position){
-               console.log(position.data.course);
-                var obj={name:position.data.course};
-                vm.applicationnames.push(obj);
-            });
-       //applicationNames[i]=applications[i]._position
-    }
+
+function deleteapplication(applicationname){
+    PositionService.findPositionIDByTitle(applicationname)
+        .then(function(response){
+            console.log("for delete appl");
+            console.log(response.data);
+            var posId = response.data;
+
+            for (var i = 0; i < vm.applications.length; i++) {
+
+                if(vm.applications[i]._position==posId){
+                    console.log("to be deleted application id");
+                    console.log(vm.applications[i]._id);
+                    applicationsService.deleteApplication(vm.applications[i]._id)
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                }
+            }
+        })
 
 }
-       // console.log("outside all functions");
-       // console.log(vm.applicationNames);
 
 
         // Author: Sesha Sai Srivatsav

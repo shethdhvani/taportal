@@ -14,13 +14,15 @@
             <th>Position</th>
             <th>Status</th>
             <th>Actions</th>
+            {{model.applicationnames}}
 
             <tr ng-repeat="appname in model.applicationnames">
 
                 <td> {{appname.name}} </td>
                 <td>Under Review</td>
-                <td>{{application.availability}}</td>
-                <td><a class="btn btn-block btn-danger">Withdraw</a></td>
+                <td>{{appname.applicationId}}</td>
+                <td><button ng-click="model.deleteapplication(appname.name)" class="btn btn-block btn-danger">
+                    Withdraw</button></td>
             </tr>
 
 
