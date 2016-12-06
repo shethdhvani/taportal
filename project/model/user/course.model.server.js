@@ -10,16 +10,29 @@ module.exports = function () {
 
 
 
+
     var api = {
         createCourse: createCourse,
         findCourseByCoursename: findCourseByCoursename,
         findAllCourses: findAllCourses,
         updateCourse: updateCourse,
         deleteCourse: deleteCourse,
-        findCourseById: findCourseById
+        findCourseById: findCourseById,
+        findCourseByName: findCourseByName
    };
 
     return api;
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Srivatsav                                                      //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Description: The below functions provide CRUD operations on Course     //
+    //                                                                                              //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     function updateCourse(courseId, course) {
         delete course._id;
@@ -51,6 +64,20 @@ module.exports = function () {
     }
 
 
- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Manognya                                                      //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Anvita                                                      //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    function findCourseByName(courseName) {
+      // return Course.findById({_id: courseId});
+          return Course.findOne({coursename: courseName});
+        }
+
+
 
 };

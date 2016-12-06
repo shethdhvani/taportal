@@ -1,5 +1,5 @@
 /**
- * Created by seshasai on 11/5/2016.
+ * Authored by seshasai on 11/5/2016.
  */
 
 module.exports = function () {
@@ -15,6 +15,6 @@ module.exports = function () {
         availability : {type : String,  enum: ['Fully Available', 'Looking for Co-ops']}, // Enum
         remarks : String,
         status :{type : String,  enum: ['Accepted', 'Rejected', 'In Progress']}// Enum Accepted Rejected
-}, {collections: 'taportal.application'});
+}, {collection: 'taportal.application'});
     return ApplicationSchema;
 };

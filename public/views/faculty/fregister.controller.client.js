@@ -6,10 +6,35 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function FRegisterController($location, UserService) {
+    function FRegisterController($location, $rootScope, UserService, CoursesandSemestersService) {
         var vm = this;
 
         vm.register = register;
+
+
+
+        function init() {
+            findAllCourses();
+
+        }
+        init();
+
+
+
+        function findAllCourses() {
+            CoursesandSemestersService
+                .findAllCourses()
+                .then(function (response) {
+                    vm.courses =  response.data;
+                    vm.courseCount = vm.courses.length;
+                })
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                      Developed by Srivatsav                                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // Author: Sesha Sai Srivatsav
 
         function register(username, password, firstName, lastName, email, usertype) {
             var usertype = "faculty";
@@ -26,7 +51,7 @@
                     .then(function (response) {
                             var user = response.data;
                             if(user){
-                                $location.url("/fprofile");
+                                $location.url("/feditprofile");
                             }
 
                         },

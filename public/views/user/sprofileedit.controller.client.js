@@ -6,7 +6,7 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function SEditProfileController($routeParams, $location, UserService, $rootScope) {
+    function SEditProfileController($routeParams, $location, UserService, $rootScope, CoursesandSemestersService) {
         var vm = this;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
@@ -14,18 +14,111 @@
         var userId = $rootScope.currentUser._id;
         vm.logout = logout;
 
+        
+        vm.addCurrentCourses =addCurrentCourses;
+        vm.deleteCurrentCourse = deleteCurrentCourse;
+
+        vm.addUserCourses = addUserCourses;
+        vm.deleteUserCourse = deleteUserCourse;
+
+
+        var user;
+        var oldCoursesCurrent;
+        var oldCoursesTaken;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                      Developed by Srivatsav                                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         /*it is good practice to declare initialization ina function. say init*/
+
+
+
+        // Author: Sesha Sai Srivatsav
         function init(){
             UserService
                 .findUserById(userId)
                 .then(function (response) {
                     vm.user = response.data;
+                    user = vm.user;
+                    // oldCoursesCurrent = user.currentCourses;
+                    // oldCoursesTaken = user.coursesTaken;
+                });
+
+
+            CoursesandSemestersService
+                .findAllCourses()
+                .then(function (response) {
+                    vm.courses = response.data;
+
                 });
         }
         init();
 
 
+        // Author: Sesha Sai Srivatsav
+        function addCurrentCourses(user) {
+            UserService
+                .addCurrentCourses(userId, user)
+                .then(function (res) {
+                    var updatedUser = res.data;
+                    if(updatedUser){
+                        vm.success="Successfully updated courses";
+                        init();
+                    }else {
+                        vm.error="Someting is off";
+                    }
+                })
+        }
 
+        // Author: Sesha Sai Srivatsav
+        function deleteCurrentCourse(course) {
+            UserService
+                .deleteCurrentCourse(userId, course)
+                .then(function (res) {
+                    var updatedUser = res.data;
+                    if(updatedUser){
+                        vm.success="Successfully Deleted courses";
+                        init();
+                    }else {
+                        vm.error="Someting is off";
+                    }
+                })
+
+        }
+
+        // Author: Sesha Sai Srivatsav
+        function addUserCourses(user) {
+            UserService
+                .addUserCourses(userId, user)
+                .then(function (res) {
+                    var updatedUser = res.data;
+                    if(updatedUser){
+                        vm.success="Successfully updated courses";
+                        init();
+                    }else {
+                        vm.error="Someting is off";
+                    }
+                })
+        }
+
+        // Author: Sesha Sai Srivatsav
+        function deleteUserCourse(course) {
+            UserService
+                .deleteUserCourse(userId, course)
+                .then(function (res) {
+                    var updatedUser = res.data;
+                    if(updatedUser){
+                        vm.success="Successfully Deleted courses";
+                        init();
+                    }else {
+                        vm.error="Someting is off";
+                    }
+                })
+
+        }
+
+
+        // Author: Sesha Sai Srivatsav
         function logout() {
             UserService
                 .logout()
@@ -38,6 +131,8 @@
                     }
                 );
         }
+
+        // Author: Sesha Sai Srivatsav
         function deleteUser() {
             UserService
                 .deleteUser(userId)
@@ -51,20 +146,33 @@
                 });
         }
 
+ 
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                      Developed by Manognya                                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                      Developed by Anvita                                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         function updateUser(user){
+
             UserService
                 .updateUser(userId, user)
                 .then(function (res) {
                     var updatedUser = res.data;
                     if (updatedUser){
                         vm.success="successfully updated!";
+                        init();
                     }else{
                         vm.error = "Some thing doesn't seem right here";
                     }
                 });
         }
-
-
 
     }
 

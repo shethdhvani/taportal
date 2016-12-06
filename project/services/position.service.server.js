@@ -7,15 +7,43 @@ module.exports= function(app, models){
     var positionModel = models.positionModel;
 
 
+
     app.post("/api/position", createPosition);
     app.get("/api/position/:positionId", findPositionById);
     app.delete("/api/position/:positionId", deletePosition);
     app.put("/api/position/:positionId", updatePosition);
     app.put("/api/position/semestername", updateDeadline);
     app.get("/api/findallpositions", findallpositions);
+    //  app.get("/api/findPositionByCourseName", courseName);
+
+    //Author: Manognya
+    app.get("/api/application/:positionTitle",findPositionIDByTitle);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Anvita                                                     //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    app.get("/api/findPositionByCourseName/:courseName", findPositionByCourseName);
+
+    function findPositionByCourseName(req, res) {
+        var name = req.params.courseName;
+        positionModel
+            .findPositionByName(name)
+            .then(function (position) {
+                res.send(position);
+            }, function (error) {
+                res.statusCode(404).send(error);
+            });
+    }
 
 
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Srivatsav                                                      //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Author: Sesha Sai Srivatsav
+    // Description: returns the position with a specific position ID
+    // function: findPositionById
     function findPositionById(req, res) {
         var id = req.params.positionId;
         positionModel
@@ -27,7 +55,9 @@ module.exports= function(app, models){
             });
     }
 
-
+    // Author: Sesha Sai Srivatsav
+    // Description: Updates the position for a specified position ID
+    // function: updatePosition
     function updatePosition(req, res) {
         var id = req.params.positionId;
         var position = req.body;
@@ -38,7 +68,7 @@ module.exports= function(app, models){
                     res.sendStatus(200);
                 },
                 function (error) {
-                    res.sendStatus(404);
+                    res.statusCode(404).send(error);
                 }
             );
     }
@@ -57,12 +87,16 @@ module.exports= function(app, models){
                     res.sendStatus(200);
                 },
                 function (error) {
-                    res.sendStatus(404);
+                    res.statusCode(404).send(error);
                 }
             );
     }
-
+    // Author: Sesha Sai Srivatsav
+    // Description: deletes a position for a given position ID
+    // function:deletePosition
     function deletePosition(req,res) {
+
+
         positionModel
             .deletePosition(req.params.positionId)
             .then(function (stats) {
@@ -73,7 +107,9 @@ module.exports= function(app, models){
                 });
     }
 
-
+    // Author: Sesha Sai Srivatsav
+    // Description: returns all positions in the system
+    // function: findallpositions
     function findallpositions(req,res) {
         positionModel
             .findAllPositions()
@@ -82,18 +118,21 @@ module.exports= function(app, models){
                     res.json(positions);
                 },
                 function (error) {
-                    res.sendStatus(404);
+                    res.statusCode(404).send(error);
                 }
             );
     }
 
+    // Author: Sesha Sai Srivatsav
+    // Description: Creates a new TA Position
+    // function: createPosition
     function createPosition(req, res) {
         var position = req.body;
         positionModel
             .createPosition(req.body)
             .then(
                 function (stats) {
-                    res.send(200);
+                    res.sendStatus(200);
 
                 }, function (err) {
                     res.sendStatus(400).send(err);
@@ -101,8 +140,27 @@ module.exports= function(app, models){
             );
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Anvita                                                      //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                      Developed by Manognya                                                      //
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    function findPositionIDByTitle(req,res) {
+        var posTitle = req.params.positionTitle;
+        positionModel. findPositionIDByTitle(posTitle)
+            .then(
+                function (position) {
+                    console.log(position[0]);
+                    console.log(position[0]._id);
+                    res.send(position[0]._id);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            )}
 
 };

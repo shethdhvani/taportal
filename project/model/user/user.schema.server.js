@@ -1,5 +1,5 @@
 /**
- * Created by seshasai on 11/3/2016.
+ * Authored by Seshasai on 11/3/2016.
  */
 //we create a schema
 
@@ -19,32 +19,28 @@ module.exports = function () {
         image: String, // Image of the user
         aboutMyself: String, // Few lines about the user
 
-        // Fields specific for Students
-        resume: {
-            url: String, //Place where the Resume is stored
-            resume : String
-        } ,
-        // Relevant documents that are attached by a student
-        documents: [
-            {
-                name: String,
-                file: String
-            }
-        ],
-        //NUID of the student 
+
+        resumeURL: String,
+        resumeName: String,
+
         nuid : Number,
         phone : String,
         gpa : Number,
-        coursesTaken: [
-            {
-                name: String
-            }
-        ],
-        currentCourses :[
-            {
-                name: String
-            }
-        ],
+
+        // coursesTaken: [
+        //     {
+        //         name: String
+        //     }
+        // ],
+        // currentCourses :[
+        //     {
+        //         name: String
+        //     }
+        // ],
+
+        
+        coursesTaken: [String],
+        currentCourses :[String],
 
         rating :[
             {

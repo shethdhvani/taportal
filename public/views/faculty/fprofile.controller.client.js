@@ -9,8 +9,14 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function FProfileController($routeParams, $location, UserService, $rootScope) {
+    function FProfileController($routeParams, $location, UserService, $rootScope,PositionService) {
         var vm = this;
+         //anvita
+        vm.applicationsforCourse;
+        vm.abc = "p";
+        vm.position;
+        vm.getApplications = getApplications;
+        // anvita end
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
         vm.userId = $rootScope.currentUser._id;
@@ -23,9 +29,59 @@
                 .then(function (response) {
                     vm.user = response.data;
                 });
+            findAllPositions();
+
         }
         init();
 
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                      Developed by Anvita                                                  //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        function getApplications(position) {
+
+            applicationsService
+                .getApplicationsForPosition(position._id)
+                .then(
+                    function (response) {
+
+                        vm.applications = response.data;
+                        vm.abc = "123";
+                        console.log("Response.data");
+                        console.log(vm.applications);
+
+                        $location.url("/applicationsForCource");
+                    });
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                      Developed by Srivatsav                                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        // Author: Sesha Sai Srivatsav
+
+        function findAllPositions() {
+            PositionService
+                .findAllPositions()
+                .then(function (response) {
+                    var pos = response.data;
+
+                    for(i=0; i<pos.length; i++){
+                        var temp = pos[i].deadline;
+                        pos[i].deadline = new Date(temp);
+                    }
+
+
+                    vm.positions = pos;
+                    //console.log(  vm.positions);
+                    vm.positionCount = vm.positions.length;
+
+                });
+        }
+
+
+        // Author: Sesha Sai Srivatsav
         function logout() {
             UserService
                 .logout()
@@ -38,6 +94,7 @@
                     }
                 );
         }
+        // Author: Sesha Sai Srivatsav
         function deleteUser() {
             UserService
                 .deleteUser(userId)
@@ -51,6 +108,7 @@
                 });
         }
 
+        // Author: Sesha Sai Srivatsav
         function updateUser(user){
             UserService
                 .updateUser(userId, user)

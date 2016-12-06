@@ -11,7 +11,9 @@
 
         vm.register = register;
 
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                      Developed by Srivatsav                                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         function register(username, password, firstName, lastName, email, usertype) {
             var usertype = "student";
@@ -27,9 +29,8 @@
                     .then(function (response) {
                             var user = response.data;
                             if(user){
-                                $location.url("/sprofile");
+                                $location.url("/seditprofile");
                             }
-
                         },
                         function (err) {
                             vm.error = err;
