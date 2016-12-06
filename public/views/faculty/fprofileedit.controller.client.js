@@ -103,7 +103,7 @@
         }
         // Author: Sesha Sai Srivatsav
         function updateUser(user){
-           
+           user.gpa = 0;
             UserService
                 .updateUser(userId, user)
                 .then(function (res) {
