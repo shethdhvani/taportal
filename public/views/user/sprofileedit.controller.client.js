@@ -159,10 +159,10 @@
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         //                      Developed by Anvita                                                      //
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        function updateUser(user, newcoursesCurrent, newcoursesTaken){
+        function updateUser(user){
 
             UserService
-                .updateUser(userId, user, newcoursesCurrent, oldCoursesCurrent, newcoursesTaken, oldCoursesTaken)
+                .updateUser(userId, user)
                 .then(function (res) {
                     var updatedUser = res.data;
                     if (updatedUser){

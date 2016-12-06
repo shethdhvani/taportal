@@ -68,13 +68,13 @@
         </div>
     </form>
 
-
+    <!------------------------------------------------------------------------>
     <!-- Current Courses-->
     <!-- Dropdown is populated from the database -->
 
     <form>
         <div class="form-group">
-            <div class="row container">
+
                 <!--Dropdown to select courses-->
                 <div class="col-sm-8 col-md-8">
                     <label for="username">Current Courses</label>
@@ -92,7 +92,7 @@
                     <label>Add Courses</label>
                     <a ng-click = "model.addCurrentCourses(model.user)" class="btn btn-success btn-block">Add my courses</a>
                 </div>
-            </div>
+
 
 
             <!-- Display Courses-->
@@ -107,13 +107,13 @@
     </form>
 
 
-
+    <!------------------------------------------------------------------------>
     <!-- Already Taken Courses-->
-    <!-- Dropdown is populated from the database -->
+         <!-- Dropdown is populated from the database -->
 
     <form>
         <div class="form-group">
-            <div class="row container">
+
                 <!--Dropdown to select courses-->
                 <div class="col-sm-8 col-md-8">
                     <label for="username">Already Taken Courses</label>
@@ -130,7 +130,7 @@
                     <label>Add Courses</label>
                     <a ng-click = "model.addUserCourses(model.user)" class="btn btn-success btn-block">Add my courses</a>
                 </div>
-            </div>
+
 
 
             <!-- Display Courses-->
@@ -144,7 +144,9 @@
         </div>
     </form>
 
-    <!-------------------------------------------------->
+
+
+    <!------------------------------------------------------------------------>
     <!-- Resume Upload -->
     <b>Upload Resume:</b>
 
@@ -153,18 +155,29 @@
 
     <form action="/api/resumeupload" target="formresponse1" method="post" enctype="multipart/form-data">
 
+        <!---- File choosing --->
+        <div class="col-sm-8 col-md-8">
+            <input name="userId" value="{{model.user._id}}" style="display: none"/>
+            <input  name="myResume"   type="file" class="form-control"/>
+        </div>
+        <!--------------------->
 
-        <input name="userId" value="{{model.user._id}}" style="display: none"/>
-        <input  name="myResume"   type="file" class="form-control"/>
-        <button type="submit"   class="btn btn-block btn-primary">Upload Resume</button>
+        <!-- Submit button -->
+        <div class="col-sm-4 col-md-4">
+          <button type="submit"   class="btn btn-block btn-primary">Upload Resume</button>
+        </div>
+        <!--------------------->
     </form>
 
     <!-------------------------------------------------->
 
 
 
-    <button ng-click="model.updateUser(model.user, newcoursesCurrent, newcoursesTaken)"
-            class="btn btn-primary btn-block" type="submit">Update Fields</button>
+    <br>
+    <br>
+    <br>
+    <button ng-click="model.updateUser(model.user)"
+            class="btn btn-primary btn-block" type="submit">Update Profile</button>
 
 
 
@@ -174,7 +187,7 @@
 
 </div>
 
-
+</div>
 <!-------------------------------------------------->
 <!----------------- Footer ------------------------->
 <!--------------------------------------------------->
