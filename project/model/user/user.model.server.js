@@ -122,8 +122,9 @@ module.exports = function () {
                     lastName : user.lastName,
                     email: user.email,
                     usertype : user.usertype,
-                    currentCourses: user.currentCourses,
-                    coursesTaken: user.coursesTaken,
+                    phone: user.phone,
+                    // currentCourses: user.currentCourses, // to fix a bug - by srivatsav
+                    // coursesTaken: user.coursesTaken, // to fix a bug - by srivatsav
                     gpa: parseInt(user.gpa),
                     aboutMyself: user.aboutMyself
 
