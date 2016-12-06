@@ -10,9 +10,9 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function SMyJobsDashboardController($routeParams, $location, UserService, $rootScope,applicationsService) {
+    function SMyJobsDashboardController($routeParams, $location, UserService, $rootScope,applicationsService,PositionService) {
         var vm = this;
-
+        vm.applicationnames=[];
         vm.userId = $rootScope.currentUser._id;
         var userId = $rootScope.currentUser._id;
         vm.logout = logout;
@@ -26,13 +26,21 @@
                     vm.user = response.data;
                 });
 
-// AUTHOR: Manognya
+      // AUTHOR: Manognya
             applicationsService
                 .findApplicationForUser(userId)
                 .then(function (response) {
                     console.log("applications for student");
                     console.log(response.data);
                     vm.applications = response.data;
+                    application_name(vm.applications);
+                   // vm.application1 = vm.applications[0];
+                    //vm.application2 = vm.applications[1];
+                    //vm.application3 = vm.applications[2];
+
+                    //console.log("each application:");
+                    //console.log(vm.application1);
+
                 })
 
 
@@ -41,9 +49,23 @@
         init();
 
 
+ function application_name(applications){
+    console.log("in application_name client");
+    for (var i = 0; i < applications.length; i++) {
+        console.log("in application names");
+        console.log(applications[i]._position);
+        PositionService.findPositionById(applications[i]._position)
+            .then(function(position){
+               console.log(position.data.course);
+                var obj={name:position.data.course};
+                vm.applicationnames.push(obj);
+            });
+       //applicationNames[i]=applications[i]._position
+    }
 
-
-
+}
+       // console.log("outside all functions");
+       // console.log(vm.applicationNames);
 
 
         // Author: Sesha Sai Srivatsav

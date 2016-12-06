@@ -11,30 +11,18 @@
             <!-- Header for Position-->
             <!------------------------>
 
-
-            {{model.applications}}
-
             <th>Position</th>
             <th>Status</th>
             <th>Actions</th>
 
-            <tr>
-                <td>PDP</td>
+            <tr ng-repeat="appname in model.applicationnames">
+
+                <td> {{appname.name}} </td>
                 <td>Under Review</td>
+                <td>{{application.availability}}</td>
                 <td><a class="btn btn-block btn-danger">Withdraw</a></td>
             </tr>
 
-            <tr>
-                <td>Algorithms Summer 1 2017 TA</td>
-                <td>Accepted</td>
-                <td><a class="btn btn-block btn-danger">Withdraw</a></td>
-            </tr>
-
-            <tr>
-                <td>Web Development Fall 2017 TA</td>
-                <td>Rejected</td>
-                <td><a class="btn btn-block btn-danger">Withdraw</a></td>
-            </tr>
 
         </table>
 
