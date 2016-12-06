@@ -11,6 +11,7 @@
 
     function FProfileController($routeParams, $location, UserService, $rootScope,PositionService, applicationsService) {
         var vm = this;
+
         vm.rateStudent = rateStudent;
         var faculty;
         vm.apps;
@@ -40,6 +41,7 @@
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         function rateStudent(StudentID, rating) {
+
 
             UserService
                 .findUserById1(StudentID)
@@ -96,6 +98,8 @@
 
         function getApplications(position) {
 
+            var ratingGiven = 1;
+
             applicationsService
                 .getApplicationsForPosition(position._id)
                 .then(
@@ -103,10 +107,10 @@
 
                     var apps1 = response.data;
                         var apps2 = [] ;
-
+                        ratingGiven = 1;
                         for (i = 0; i < apps1.length; i++) {
                             var sid = apps1[i]._user;
-                            var ratingGiven = 1;
+
 
                             UserService
                                 .findUserById1(sid)
@@ -119,16 +123,20 @@
 
                                         for (i1 = 0; i1 < rating1.length; i1++) {
                                             sum = sum + parseInt(rating1[i1].rating);
-                                            console.log(ratingGiven);
+
                                         }
 
 
                                             ratingGiven = parseInt(sum/rating1.length);
-                                        console.log(ratingGiven);
 
-                                        if(ratingGiven < 1){
+
+                                        if(parseInt(ratingGiven) < 1){
                                             ratingGiven = 1;
                                         }
+                                        console.log(ratingGiven);
+
+
+
 
                                     });
 
@@ -142,6 +150,9 @@
                             };
 
                             apps2.push(app1);
+
+                            //  console.log(ratingGiven);
+
                         }
 
 
