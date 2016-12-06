@@ -36,65 +36,29 @@
                 .findApplicationForUser(userId)
                 .then(function (response) {
                     vm.applications = response.data;
-
-                    vm.application1 = vm.applications[0];
-                    vm.application2 = vm.applications[1];
-                    vm.application3 = vm.applications[2];
-
-                    // getting the names
-                    var posNames=new Array();
-                    for (var i = 0; i < vm.applications.length; i++) {
-
-                        PositionService.findPositionById(vm.applications[i]._position)
-                            .then(function (position) {
-
-                            });
-                    }
-
-
-                })
+                    })
         }
 
-        function createApplications(app1, app2, app3){
+        function createApplications(application){
             applicationsService
                 .findApplicationForUser(userId)
                 .then(function (response) {
 
                     if(response.data.length==0 || response.data.length==1 ||response.data.length==2){
-                        PositionService.findPositionIDByTitle(app1._position)
+                        PositionService.findPositionIDByTitle(application._position)
                             .then(function(response){
                                 var posId = response.data;
 
-                                applicationsService.createApplication(app1,vm.userId,posId)
+                                applicationsService.createApplication(application,vm.userId,posId)
                                     .then(function (response){
-
-                                        vm.application1 = response.data;
+                                        init();
                                     })
                             });
 
-                        PositionService.findPositionIDByTitle(app2._position)
-                            .then(function(response){
-                                var posId2 = response.data;
 
-                                applicationsService.createApplication(app2,vm.userId,posId2)
-                                    .then(function (response){
 
-                                        vm.application2 = response.data;
-                                    })
-                            });
-                        PositionService.findPositionIDByTitle(app3._position)
-                            .then(function(response){
-
-                                var posId3 = response.data;
-
-                                applicationsService.createApplication(app3,vm.userId,posId3)
-                                    .then(function (response){
-
-                                        vm.application3 = response.data;
-                                    })
-                            });
                     } else{
-                        vm.updatedmessage = "Maximum applications for course = 3. please delete !";
+                        vm.updatedmessage = "Maximum applications for course = 3. please withdraw un-required application!";
                     }
                 })
 
@@ -131,7 +95,6 @@
 
 
                     vm.positions = pos;
-                    //console.log(  vm.positions);
                     vm.positionCount = vm.positions.length;
 
                 });

@@ -17,18 +17,23 @@
         var userId = $rootScope.currentUser._id;
         vm.logout = logout;
         vm.deleteapplication=deleteapplication;
+        vm.findApplicationForUser = findApplicationForUser;
 
-        /*it is good practice to declare initialization ina function. say init*/
+
+
         function init(){
             vm.applicationnames=[];
-      // AUTHOR: Manognya
+            findApplicationForUser();
+
+        }
+        init();
+
+
+        function findApplicationForUser() {
             applicationsService
                 .findApplicationForUser(userId)
                 .then(function (response) {
-                    console.log("applications for student");
-                    console.log(response.data);
                     vm.applications = response.data;
-
                     for (var i = 0; i < vm.applications.length; i++) {
                         PositionService.findPositionById(vm.applications[i]._position)
                             .then(function(position){
@@ -39,31 +44,28 @@
 
                 });
         }
-        init();
 
 
 
-function deleteapplication(applicationname){
-    PositionService.findPositionIDByTitle(applicationname)
-        .then(function(response){
-            console.log("for delete appl");
-            console.log(response.data);
-            var posId = response.data;
+        function deleteapplication(applicationname){
+            PositionService.findPositionIDByTitle(applicationname)
+                .then(function(response){
+                    var posId = response.data;
 
-            for (var i = 0; i < vm.applications.length; i++) {
+                    for (var i = 0; i < vm.applications.length; i++) {
 
-                if(vm.applications[i]._position==posId){
-                    console.log("to be deleted application id");
-                    console.log(vm.applications[i]._id);
-                    applicationsService.deleteApplication(vm.applications[i]._id)
-                        .then(function (response) {
-                            console.log(response);
-                        })
-                }
-            }
-        })
+                        if(vm.applications[i]._position==posId){
+                            applicationsService.deleteApplication(vm.applications[i]._id)
+                                .then(function (response) {
+                                    vm.deletemsg = "application withdrawn successfully!";
+                                })
+                        }
+                    }
 
-}
+                    init();
+                })
+
+        }
 
 
         // Author: Sesha Sai Srivatsav

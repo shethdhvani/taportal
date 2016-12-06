@@ -4,27 +4,28 @@
 
 <div class="container">
 
+    <!-- Deleted Message -->
+    <div ng-if="model.updatedmessage" class="alert alert-success">
+        {{model.deletemsg}}
+    </div>
 
     <div class="table-responsive">
         <table class="table table-hover">
-            <!-- Table header--------->
-            <!-- Header for Position-->
-            <!------------------------>
 
+            <!-- Table header--------->
             <th>Position</th>
             <th>Status</th>
             <th>Actions</th>
-            {{model.applicationnames}}
 
+            <!------------------------>
+            <!-- Table Data--------->
             <tr ng-repeat="appname in model.applicationnames">
-
                 <td> {{appname.name}} </td>
-                <td>Under Review</td>
                 <td>{{appname.applicationId}}</td>
                 <td><button ng-click="model.deleteapplication(appname.name)" class="btn btn-block btn-danger">
                     Withdraw</button></td>
             </tr>
-
+            <!------------------------>
 
         </table>
 
