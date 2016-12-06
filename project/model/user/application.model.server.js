@@ -21,14 +21,10 @@ module.exports = function () {
     return api;
 
     function createApplication(application) {
-        console.log("in model");
-        console.log(application);
         return  Application.create(application);
     }
 
     function findApplicationForUser(userId) {
-        console.log("in app model server");
-        console.log(userId);
         return Application.find({_user: userId});
     }
 
@@ -57,8 +53,6 @@ module.exports = function () {
 
         //anvita
     function findApplicationsForPosition(PosId) {
-        console.log("findApplicationsForPosition");
-        console.log(PosId);
         return Application.find({_position: PosId});
     }
     // anvita end

@@ -17,40 +17,46 @@
         vm.logout = logout;
 
         vm.createApplications=createApplications;
+        vm.findApplicationForUser = findApplicationForUser;
+
 
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
             findAllCourses();
             findAllSemesters();
             findAllPositions();
+            findApplicationForUser();
 
-            applicationsService
-                .findApplicationForUser(userId)
-                .then(function (response) {
-                    console.log("applications for student");
-                    console.log(response.data);
-                    vm.applications = response.data;
-                    vm.application1 = vm.applications[0];
-                    console.log(vm.application1);
-        })
         }
         init();
 
+          
+        function findApplicationForUser() {
+            applicationsService
+                .findApplicationForUser(userId)
+                .then(function (response) {
+                    vm.applications = response.data;
 
-        function createApplications(app1){
-            console.log(app1);
-           // console.log(app2);
-            //console.log(app3);
+                    vm.application1 = vm.applications[0];
+                    vm.application2 = vm.applications[1];
+                    vm.application3 = vm.applications[2];
 
-            //console.log(app1._position);
+                    // getting the names
+                    var posNames=new Array();
+                    for (var i = 0; i < vm.applications.length; i++) {
+
+                        PositionService.findPositionById(vm.applications[i]._position)
+                            .then(function (position) {
+
+                            });
+                    }
+
+
+                })
+        }
+        function createApplications(app1, app2, app3){
             PositionService.findPositionIDByTitle(app1._position)
                 .then(function(response){
-                    console.log(response);
-                    console.log(response.data);
-                    //console.log(JSON.parse(response.data));
-                    //console.log(response.data[1]._id);
-
-                    //console.log(response._id);
                     var posId = response.data;
 
                     applicationsService.createApplication(app1,vm.userId,posId)
@@ -59,15 +65,10 @@
                             vm.application1 = response.data;
                         })
                 });
-           /* PositionService.findPositionIDByTitle(app2._position)
-                .then(function(response){
-                    console.log(response);
-                    console.log(response.data);
-                    //console.log(JSON.parse(response.data));
-                    //console.log(response.data[1]._id);
 
-                    //console.log(response._id);
-                    var posId2 = response.data;
+            PositionService.findPositionIDByTitle(app2._position)
+                .then(function(response){
+                   var posId2 = response.data;
 
                     applicationsService.createApplication(app2,vm.userId,posId2)
                         .then(function (response){
@@ -77,12 +78,7 @@
                 });
             PositionService.findPositionIDByTitle(app3._position)
                 .then(function(response){
-                    console.log(response);
-                    console.log(response.data);
-                    //console.log(JSON.parse(response.data));
-                    //console.log(response.data[1]._id);
 
-                    //console.log(response._id);
                     var posId3 = response.data;
 
                     applicationsService.createApplication(app3,vm.userId,posId3)
@@ -91,7 +87,6 @@
                             vm.application3 = response.data;
                         })
                 });
-*/
 
 
         }
