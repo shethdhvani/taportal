@@ -26,11 +26,35 @@
             addUserCourses: addUserCourses,
             deleteUserCourse: deleteUserCourse,
             addCurrentCourses: addCurrentCourses,
-            deleteCurrentCourse: deleteCurrentCourse
+            deleteCurrentCourse: deleteCurrentCourse,
+            rateStudent: rateStudent,
+            findUserById1: findUserById1
         };
 
         return api;
         /*functions are implemented below*/
+               ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //                      Developed by Anvita                                                      //
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        function findUserById1(userId) {
+            var url = "/api/user1/" + userId;
+            return $http.get(url);
+        }
+
+
+
+ //   .rateStudent(StudentID, rating, faculty)
+
+        // anvita
+        function rateStudent(StudentID, rating1) {
+
+            var url = "/api/rateStudent/" +StudentID;
+
+            return $http.put(url, rating1);
+        }
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////

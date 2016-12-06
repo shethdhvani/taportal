@@ -21,7 +21,8 @@ module.exports = function () {
         deleteUserCourse: deleteUserCourse,
         addCurrentCourses: addCurrentCourses,
         deleteCurrentCourse: deleteCurrentCourse,
-        updateResumeOfStudent: updateResumeOfStudent
+        updateResumeOfStudent: updateResumeOfStudent,
+        rateStudentByFaculty: rateStudentByFaculty,
 
 
     };
@@ -161,6 +162,18 @@ module.exports = function () {
             .update({_id: userId},{
                 $set: {resumeURL : resume.url,
                     resumeName: resume.resume}}
+            );
+    }
+
+
+
+    function rateStudentByFaculty(stuId, ratingFull) {
+
+
+        return User
+            .update({_id: stuId},{
+                "$set": { "rating": ratingFull
+                }}
             );
     }
 

@@ -13,15 +13,69 @@
         {{model.error}}
     </div>
 
+    <div class="container-fluid">
+    {{apps}}
 
-    {{model.applications}}
+    main
 
-    {{model.abc}}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <!-- Table header--------->
+            <!-- Header for Position-->
+            <!------------------------->
+            <th>Priority</th>
+            <th>Position</th>
+            <th>Previously Taken</th>
+            <th>Grade Obtained</th>
+            <th>Been TA Semister</th>
+            <th>Availability</th>
+            <th>User</th>
+            <th>_v</th>
+
+            <th>Current Rating</th>
+            <th>Rate a Student</th>
+
+
+
+<tr ng-repeat="application in model.apps">
+    <td>{{ application.priority }}</td>
+    <td><!--{{ application._position }} --> 123</td>
+    <td>{{ application.previouslyTaken }}</td>
+    <td>{{ application.gradeObtained }}</td>
+    <td>{{ application.beenTASemester }}</td>
+    <td>{{ application.availability }}</td>
+    <td><!--{{ application._user }} --> abc</td>
+    <td>{{ application.__v }}</td>
+    <td> {{application.ratingvalue}} </td>
+    <td>
+        <button ng-if="1 > application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 1)"  class="glyphicon glyphicon-star-empty"></button>
+          <button ng-if="1 <= application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 1)" class="glyphicon glyphicon-star"></button>
+
+        <button ng-if="2 > application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 2)" class="glyphicon glyphicon-star-empty"></button>
+        <button ng-if="2 <= application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 2)" class="glyphicon glyphicon-star"></button>
+
+        <button ng-if="3 > application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 3)" class="glyphicon glyphicon-star-empty"></button>
+        <button ng-if="3 <= application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 3)" class="glyphicon glyphicon-star"></button>
+
+        <button ng-if="4 > application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 4)" class="glyphicon glyphicon-star-empty"></button>
+        <button ng-if="4 <= application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 4)" class="glyphicon glyphicon-star"></button>
+
+
+    </td>
+</tr>
+
+
+        </table>
 
 
 
 
 
+
+    </div>
+
+
+</div>
 </div>
 
 
