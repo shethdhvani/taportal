@@ -2,7 +2,7 @@
 
 <!--Body-->
 <div class="container-fluid">
-    <div class="container-fluid">
+
 
         <p></p>
 
@@ -23,28 +23,35 @@
                    class="form-control"
                    required/>
 
-       <span class="alert-class"
-             ng-show="model.myform.username.$invalid">{{model.alert}}</span>
+            <span class="alert-class"
+             ng-show="model.myform.username.$invalid">{{model.alert}}
+            </span>
 
             <p></p>
 
             <input ng-model="firstName"
                    placeholder="firstName"
                    name="firstName"
-                   type="firstName"
+                   type="text"
                    class="form-control"
                    required/>
+            <span class="alert-class"
+            ng-show="model.myform.firstName.$invalid">{{model.alert}}
+            </span>
 
             <p></p>
 
             <input ng-model="lastName"
                    placeholder="lastName"
                    name="lastName"
-                   type="lastName"
+                   type="text"
                    class="form-control"
                    required/>
 
             <p></p>
+            <span class="alert-class"
+            ng-show="model.myform.lastName.$invalid">{{model.alert}}
+            </span>
 
             <input ng-model="password"
                    placeholder="password"
@@ -52,8 +59,9 @@
                    type="password"
                    class="form-control"
                    required/>
-    <span class="alert-class"
-          ng-show="model.myform.password.$invalid">{{model.alert}}</span>
+            <span class="alert-class"
+             ng-show="model.myform.password.$invalid">{{model.alert}}
+            </span>
             <p></p>
 
 
@@ -63,8 +71,9 @@
                    type="password"
                    class="form-control"
                    required/>
-    <span class="alert-class"
-          ng-show="model.myform.vpassword.$invalid">{{model.pwmatch}}</span>
+            <span class="alert-class"
+            ng-show="model.myform.vpassword.$invalid">{{model.pwmatch}}
+            </span>
 
             <p></p>
 
@@ -75,6 +84,10 @@
                    class="form-control"
                    required/>
 
+            <span class="alert-class"
+                  ng-show="model.myform.email.$invalid">{{model.alert}}
+            </span>
+
             <p> </p>
             <button class="btn btn-primary btn-block"
                     ng-click="model.register(username, password, firstName, lastName, email)"
@@ -82,13 +95,13 @@
 
         </form>
 
-        <p> </p>
+        <p></p>
 
 
         <a class="btn btn-danger btn-block"
            href="#/login">Cancel</a>
 
-    </div>
+
 </div>
 
 <!-- Footer -->
