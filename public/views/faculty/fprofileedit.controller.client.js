@@ -89,6 +89,11 @@
 
         // Author: Sesha Sai Srivatsav
         function addUserCourses(user) {
+            if(vm.myform1.$valid == false){
+
+                vm.alert = "* Enter the fields";
+
+            }else{
             UserService
                 .addUserCourses(userId, user)
                 .then(function (res) {
@@ -101,6 +106,9 @@
                     }
                 })
         }
+        }
+
+
         // Author: Sesha Sai Srivatsav
         function updateUser(user){
             if(vm.myform.$valid == false){

@@ -77,18 +77,25 @@
     <!-- Dropdown is populated from the database -->
 
 
-        <div class="form-group">
+        <form novalidate name="model.myform1">
             <div class="row container">
                 <!--Dropdown to select courses-->
                 <div class="col-sm-8 col-md-8">
                     <label for="username">My Courses</label>
-                    <select type="string"
+                    <select required
+                            type="string"
                             class="form-control"
+                            name="coursename"
                             placeholder="Course Name"
-                            ng-model="model.user.coursename">
+                            ng-model="model.user.coursename" required>
 
                         <option ng-repeat="course in model.courses">{{course.coursename}}</option>
                     </select>
+
+                     <span class="alert-class"
+                           ng-show="model.myform1.coursename.$invalid">{{model.alert}}
+                    </span>
+
                 </div>
                 <!--Button to add-->
                 <div class="col-sm-4 col-md-4">
@@ -106,7 +113,7 @@
                 </a>
             </p>
 
-        </div>
+        </form>
 
 
     <!-- Phone Number-->
