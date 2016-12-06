@@ -42,10 +42,10 @@ module.exports= function(app, models) {
     app.get("/api/application/:positionTitle",findPositionIDByTitle);
 
     function createApplication(req,res) {
-        console.log("in server");
+
 
         var application = req.body;
-        console.log(application);
+
         applicationModel
             .createApplication(application)
             .then(
@@ -53,7 +53,7 @@ module.exports= function(app, models) {
                     res.send(200);
 
                 }, function (err) {
-                    console.log("error in server return");
+
                     res.sendStatus(400).send(err);
                 }
             );
@@ -78,8 +78,7 @@ module.exports= function(app, models) {
         applicationModel.findApplicationForUser(req.params.userId)
             .then(
                 function (application) {
-                    console.log("response from application model server");
-                    console.log(application.data);
+
                     res.json(application);
                 },
                 function (error) {
@@ -91,11 +90,11 @@ module.exports= function(app, models) {
     function updateApplication(req,res) {
         var application = req.body;
         var aid=req.params.applicationId;
-        console.log(application);
+
         applicationModel.updateApplication(aid, application)
             .then(
                 function (status) {
-                    console.log(status.data);
+
                     res.send(200);
                 },
                 function (error) {
@@ -121,8 +120,7 @@ module.exports= function(app, models) {
         positionModel. findPositionIDByTitle(posTitle)
             .then(
                 function (position) {
-                    console.log(position[0]);
-                    console.log(position[0]._id);
+               
                     res.send(position[0]._id);
                 },
                 function (error) {
