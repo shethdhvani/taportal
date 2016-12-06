@@ -103,6 +103,11 @@
         }
         // Author: Sesha Sai Srivatsav
         function updateUser(user){
+            if(vm.myform.$valid == false){
+
+                vm.alert = "* Enter the fields";
+
+            }else{
            user.gpa = 0;
             UserService
                 .updateUser(userId, user)
@@ -115,6 +120,7 @@
                         vm.error = "Some thing doesn't seem right here";
                     }
                 });
+         }
         }
 
 
