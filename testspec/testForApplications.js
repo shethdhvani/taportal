@@ -53,11 +53,11 @@ describe('Tests For Applications', function() {
             });
     });
 
-
     it('should find application for user', function (done) {
         chai.request(server)
             .get('/api/user/application_test/application')
             .end(function(err, res){
+                applicationId = res.body._id;
                 res.should.have.status(200);
                 done();
             })
@@ -73,8 +73,11 @@ describe('Tests For Applications', function() {
                     response.should.have.status(200);
                     done();
                 });
+                done();
             })
     });
+
+
 
 
     it('should update application', function (done) {
