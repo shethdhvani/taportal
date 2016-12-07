@@ -59,6 +59,7 @@
                                 var position = response.data.course;
 
                                 var tempobj = {};
+                                    tempobj._id = appsforuser[j]._id;
                                     tempobj.availability = appsforuser[j].availability;
                                     tempobj.priority = appsforuser[j].priority;
                                     tempobj.beenTASemester = appsforuser[j].beenTASemester;
@@ -68,6 +69,7 @@
                                     tempobj.courseName = position;
                                     temparray.push(tempobj);
                                 vm.applications = temparray;
+                               
                          });
 
 
@@ -83,7 +85,6 @@
         function createApplications(application){
             var _pos = application._position;
             application._position = newap_pos;
-            console.log(application);
             application.status = "In Progress";
             applicationsService
                 .findApplicationForUser(userId)
@@ -106,13 +107,19 @@
 
         }
 
-
-        // Author : Sesha Sai
-        function updateApplication(){
-
+        // Author : Sesha Sai Srivatsav
+        function updateApplication(applicationId, application) {
+            console.log(applicationId + "  "+ application);
+            applicationsService
+                .updateApplication(applicationId, application)
+                .then(
+                    function (response) {
+                        vm.updatedmessage = "Updated Successfully!";
+                        init();
+                    }
+                );
         }
 
-        
 
         // Author : Sesha Sai
         function findAllSemesters() {

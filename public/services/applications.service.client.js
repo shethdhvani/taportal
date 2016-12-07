@@ -20,10 +20,11 @@
 
         return api;
 
-         // anvita
+    // anvita
 
         function getApplicationsForPosition(posId) {
             var url = "/api/ApplicationForPosition/" +posId;
+
             return $http.get(url);
         }
         // end anvita
@@ -48,9 +49,8 @@
 
         }
 
-        function updateApplication(application) {
-            var url ="/api/application/"+application._id;
-             
+        function updateApplication(applicationId, application) {
+            var url ="/api/application/"+applicationId;
             return $http.put(url,application);
         }
 
