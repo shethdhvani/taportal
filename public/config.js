@@ -200,6 +200,15 @@
                 controllerAs : "model"
             })
 
+            .when("/UserInfo/:uid",{
+                templateUrl:"views/faculty/userInfo.view.client.html",
+                controller: "userInfoController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+
             // Any other error takes to login page
             .otherwise({
                 templateUrl: "views/user/login.view.client.html",
