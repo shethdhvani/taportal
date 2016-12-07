@@ -15,10 +15,15 @@
         vm.userId = $rootScope.currentUser._id;
         var userId = $rootScope.currentUser._id;
         vm.logout = logout;
+        vm.updateposnum = updateposnum;
 
         vm.createApplications=createApplications;
         vm.findApplicationForUser = findApplicationForUser;
 
+
+        function updateposnum(name){
+            console.log(name);
+        }
 
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
@@ -36,7 +41,43 @@
             applicationsService
                 .findApplicationForUser(userId)
                 .then(function (response) {
-                    vm.applications = response.data;
+
+                    var appsforuser = response.data;
+                    var temparray = [];
+                    var j = -1;
+                    for(var i =0; i<appsforuser.length; i++){
+
+
+                        PositionService
+                            .findPositionById(appsforuser[i]._position)
+                            .then(function(response){
+                                j++;
+                                var position = response.data.course;
+
+                                var tempobj = {};
+
+
+                                    tempobj.availability = appsforuser[j].availability;
+                                    tempobj.priority = appsforuser[j].priority;
+                                    tempobj.beenTASemester = appsforuser[j].beenTASemester;
+                                    tempobj.gradeObtained= appsforuser[j].gradeObtained;
+                                    tempobj.previouslyTaken= appsforuser[j].previouslyTaken;
+                                    tempobj.remarks= appsforuser[j].remarks;
+                                    tempobj.courseName = position;
+                                    temparray.push(tempobj);
+
+
+                                vm.applications = temparray;
+                                console.log(temparray);
+
+                            });
+
+
+                    }
+
+
+
+
                     })
         }
 
