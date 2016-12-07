@@ -14,18 +14,16 @@
     </div> -->
 
     <div class="container-fluid">
+    <h1>Applications for {{model.Position.course}}</h1>
 
-
-    main
-        {{apps}}
-
+    <p></p>
     <div class="table-responsive">
         <table class="table table-hover">
             <!-- Table header--------->
             <!-- Header for Position-->
             <!------------------------->
             <th>Priority</th>
-            <th>Position</th>
+
             <th>Previously Taken</th>
             <th>Grade Obtained</th>
             <th>Been TA Semister</th>
@@ -40,12 +38,12 @@
 
 <tr ng-repeat="application in apps">
     <td>{{ application.priority }}</td>
-    <td><!--{{ application._position }} --> 123</td>
+
     <td>{{ application.previouslyTaken }}</td>
     <td>{{ application.gradeObtained }}</td>
     <td>{{ application.beenTASemester }}</td>
     <td>{{ application.availability }}</td>
-    <td>{{ application.username }}</td>
+    <td><a href="#/UserInfo/{{application._user}}">{{ application.username }}</a></td>
 
     <td> {{application.ratingvalue}} </td>
     <td>
