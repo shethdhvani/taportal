@@ -49,7 +49,6 @@
         }
 
         function updateApplication(application) {
-            // console.log("in client");
             var url ="/api/application/"+application._id;
              
             return $http.put(url,application);
