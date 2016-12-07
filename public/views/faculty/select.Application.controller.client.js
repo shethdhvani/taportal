@@ -167,7 +167,7 @@ console.log(ratingAll);
 
                                     $rootScope.apps = apps2;
                                //     console.log( $rootScope.apps);
-                                     init();
+                               //      init();
 
                                 });
 
