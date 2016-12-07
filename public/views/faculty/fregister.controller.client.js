@@ -36,7 +36,7 @@
 
         // Author: Sesha Sai Srivatsav
 
-        function register(username, password, firstName, lastName, email, usertype) {
+        function register(username, password, vpassword, firstName, lastName, email, usertype) {
             var usertype = "faculty";
             
             if(vm.myform.$valid == false){
@@ -45,7 +45,10 @@
                 if(vm.myform.password !== vm.myform.vpassword){
                     vm.pwmatch = "entered passwords do not match!";
                 }
-            }else {
+            }else if(password!== vpassword){
+                vm.pwmatch = "entered passwords do not match!";
+                vm.error = "entered passwords do not match!";
+            }else{
                 UserService
                     .register(username,password, firstName, lastName, email, usertype)
                     .then(function (response) {
