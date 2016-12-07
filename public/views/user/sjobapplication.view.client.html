@@ -190,9 +190,10 @@
                 <!----- TA Role ------>
                 <td>
                     <select type="string"
-                            class="form-control resizedTextboxLonger"
+                            class="form-control resizedTextboxLongest"
                             placeholder="TA Role"
-                            ng-model="application3._position">
+                            ng-model="app.courseName"
+                            ng-change="model.updateposnum(app.courseName)">
                         <option ng-repeat="position in model.positions">{{position.course}}</option>
 
                     </select>
