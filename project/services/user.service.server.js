@@ -81,7 +81,7 @@ module.exports= function(app, models){
     // Creates new user
     // Author: Sesha Sai Srivatsav
     function register(req,res) {
-        console.log("here");
+     //   console.log("here");
         var username = req.body.username;
         var password = req.body.password;
         userModel
@@ -413,8 +413,6 @@ module.exports= function(app, models){
      
         var rating = req.body.array12;
 
-        console.log("asfcsdvcvfdhbdfxzsdvgsdbv");
-        console.log(rating);
         var ratingGiven =1 ;
         var sum = 0;
 
@@ -450,8 +448,8 @@ module.exports= function(app, models){
             .then(
                 function (student)
                 {
-                    console.log("stud");
-                   console.log(student);
+                   // console.log("stud");
+                   //console.log(student);
                 },
                 function (error) {
                     res.sendStatus(400).send(err);
