@@ -72,22 +72,30 @@ console.log(response);
                         //if(response.data.rating == undefined){
                         //    rating1 = [];
                         //}
+                        var ratingAll = [];
 
 
-                        var ratingFull =   {
+                        var ratingNew =   {
                             _user : faculty._id, //in model
                             //ratedBy: String,
                             rating: rating
                         };
 
-                        rating1.push(ratingFull);
+
+                        for (var i = 0; i < rating1.length; i++) {
+                           if(rating1[i]._user != ratingNew._user){
+                               ratingAll.push(rating1[i]);
+                           }
+
+                        }
+                        ratingAll.push(ratingNew);
 
 
-
+console.log(ratingAll);
 
 
                         var ii = {
-                            array12: rating1
+                            array12: ratingAll
                         }
 
 
