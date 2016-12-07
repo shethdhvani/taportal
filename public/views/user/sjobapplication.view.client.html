@@ -44,7 +44,7 @@
                 <td>
                     <select
                             type="string"
-                            class="form-control resizedTextboxLonger"
+                            class="form-control resizedTextboxLongest"
                             placeholder="TA Role"
                             ng-model="model.application._position">
 
@@ -99,7 +99,7 @@
                 <!--Semester-->
                 <td>
                     <select type="string"
-                            class="form-control"
+                            class="form-control resizedTextboxLonger"
                             placeholder="semestername"
                             ng-model="model.application.beenTASemester">
 
@@ -111,7 +111,7 @@
                 <!--Availability-->
                 <td>
                     <select type="string"
-                            class="form-control"
+                            class="form-control resizedTextboxLonger"
                             placeholder="Student availability"
                             ng-model="model.application.availability">
 
@@ -124,6 +124,7 @@
 
                 <!--Remarks-->
                 <td><input type="text"
+                           class="form-control resizedTextboxLonger"
                            ng-model="model.application.remarks"
                            placeholder="Enter your remarks"/>
                 </td>
@@ -176,7 +177,7 @@
                 <!---- Priority ---->
                 <td>
                     <select type="number"
-                            class="form-control"
+                            class="form-control resizedTextbox"
                             placeholder="priority"
                             ng-model="app.priority">
 
@@ -189,7 +190,7 @@
                 <!----- TA Role ------>
                 <td>
                     <select type="string"
-                            class="form-control"
+                            class="form-control resizedTextboxLonger"
                             placeholder="TA Role"
                             ng-model="application3._position">
                         <option ng-repeat="position in model.positions">{{position.course}}</option>
@@ -214,7 +215,7 @@
                 <!--Previously taken this semester-->
                 <td>
                     <select type="string"
-                            class="form-control"
+                            class="form-control resizedTextboxLonger"
                             placeholder="Previous Semester where you took the course"
                             ng-model="app.previouslyTaken">
 
@@ -226,7 +227,7 @@
                 <!--Grade Obtained-->
                 <td>
                     <select type="string"
-                            class="form-control"
+                            class="form-control resizedTextboxLonger"
                             placeholder="Grade Obtained"
                             ng-model="app.gradeObtained">
 
@@ -241,7 +242,7 @@
                 <!--Semester-->
                 <td>
                     <select type="string"
-                            class="form-control"
+                            class="form-control resizedTextboxLonger"
                             placeholder="semestername"
                             ng-model="app.beenTASemester">
 
@@ -253,7 +254,7 @@
                 <!--Availability-->
                 <td>
                     <select type="string"
-                            class="form-control"
+                            class="form-control resizedTextboxLonger"
                             placeholder="Student availability"
                             ng-model="app.availability">
 
@@ -264,7 +265,8 @@
                 </td>
 
                 <!--Remarks-->
-                <td><input type="text"
+                <td><input class="form-control resizedTextboxLonger"
+                           type="text"
                            ng-model="app.remarks"
                            placeholder="Enter your remarks"/></td>
 

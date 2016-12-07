@@ -12,3 +12,8 @@ body{
     width: 130px;
     height: 40px;
 }
+
+.resizedTextboxLongest {
+    width: 150px;
+    height: 40px;
+}
