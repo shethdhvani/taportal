@@ -414,7 +414,23 @@ module.exports= function(app, models){
 
         console.log("asfcsdvcvfdhbdfxzsdvgsdbv");
         console.log(rating);
+        var ratingGiven =1 ;
+        var sum = 0;
 
+        for (i1 = 0; i1 < rating.length; i1++) {
+            sum = sum + parseInt(rating[i1].rating);
+
+        }
+
+
+        ratingGiven = parseInt(sum/rating.length);
+
+
+        if(parseInt(ratingGiven) < 1){
+            ratingGiven = 1;
+        }
+        //console.log("anananaacacacacac");
+        //console.log(ratingGiven);
 
         userModel.rateStudentByFaculty(sid, rating)
             .then(
@@ -422,6 +438,19 @@ module.exports= function(app, models){
                 {
 
                     res.json(student);
+                },
+                function (error) {
+                    res.sendStatus(400).send(err);
+                }
+            );
+
+
+        userModel.UpdateAverageRating(sid, ratingGiven)
+            .then(
+                function (student)
+                {
+                    console.log("stud");
+                   console.log(student);
                 },
                 function (error) {
                     res.sendStatus(400).send(err);
@@ -436,7 +465,8 @@ module.exports= function(app, models){
         userModel
             .findUserById(id)
             .then(function (user) {
-                    res.json(user);
+                return(user);
+                    //res.json(user);
 
                 },
                 function (error) {
