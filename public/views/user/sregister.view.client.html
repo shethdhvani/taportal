@@ -12,10 +12,10 @@
         <div ng-if="model.error"
              class="alert alert-danger">
             {{model.error.data}}
+            {{model.pwmatch}}
         </div>
 
-
-        <form novalidate name="model.myform">
+    <form novalidate name="model.myform">
             <input ng-model="username"
                    name="username"
                    placeholder="username"
@@ -72,7 +72,7 @@
                    class="form-control"
                    required/>
             <span class="alert-class"
-            ng-show="model.myform.vpassword.$invalid">{{model.pwmatch}}
+            ng-show="model.myform.vpassword.$invalid">{{model.alert}}
             </span>
 
             <p></p>
@@ -90,7 +90,7 @@
 
             <p> </p>
             <button class="btn btn-primary btn-block"
-                    ng-click="model.register(username, password, firstName, lastName, email)"
+                    ng-click="model.register(username, password, vpassword, firstName, lastName, email)"
                     type="submit">Register</button>
 
         </form>

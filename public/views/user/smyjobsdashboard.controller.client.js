@@ -28,7 +28,7 @@
         }
         init();
 
-
+        // Author : Manognya
         function findApplicationForUser() {
             applicationsService
                 .findApplicationForUser(userId)
@@ -38,6 +38,7 @@
                         PositionService.findPositionById(vm.applications[i]._position)
                             .then(function(position){
                                 var obj={name:position.data.course};
+                                
                                 vm.applicationnames.push(obj);
                             });
                     }
@@ -46,7 +47,7 @@
         }
 
 
-
+        // Author : Manognya
         function deleteapplication(applicationname){
             PositionService.findPositionIDByTitle(applicationname)
                 .then(function(response){

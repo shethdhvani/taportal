@@ -3,7 +3,7 @@
 <!--                     Create TA Application                            -->
 <!------------------------------------------------------------------------>
 <div class="container">
-    <h4 ><b>Apply for TA </b></h4>
+    <h3 ><b>Apply for TA Position</b></h3>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -27,8 +27,9 @@
 
                 <!---- Priority ---->
                 <td>
-                    <select type="number"
-                            class="form-control"
+                    <select
+                            type="number"
+                            class="form-control resizedTextbox"
                             placeholder="priority"
                             ng-model="model.application.priority">
 
@@ -41,8 +42,9 @@
 
                 <!----- TA Role ------>
                 <td>
-                    <select type="string"
-                            class="form-control"
+                    <select
+                            type="string"
+                            class="form-control resizedTextboxLonger"
                             placeholder="TA Role"
                             ng-model="model.application._position">
 
@@ -67,8 +69,9 @@
 
                 <!--Previously taken this semester-->
                 <td>
-                    <select type="string"
-                            class="form-control"
+                    <select
+                            type="string"
+                            class="form-control resizedTextboxLonger"
                             placeholder="Previous Semester where you took the course"
                             ng-model="model.application.previouslyTaken">
 
@@ -81,7 +84,7 @@
                 <!--Grade Obtained-->
                 <td>
                     <select type="string"
-                            class="form-control"
+                            class="form-control "
                             placeholder="Grade Obtained"
                             ng-model="model.application.gradeObtained">
 
@@ -304,8 +307,8 @@
         </p>
         <p class="navbar-text pull-left">
 
-            <a  href="#/aconsole">
-                <span>Back to AdminConsole</span>
+            <a  href="#/sprofile">
+                <span>Back to Profile</span>
             </a>
         </p>
 
