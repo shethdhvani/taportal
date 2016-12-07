@@ -11,7 +11,16 @@
     function Config($routeProvider) {
         $routeProvider
 
+        //anvita
 
+           .when("/applicationsForCource/:posId",{
+                templateUrl :"views/faculty/applicationsForCourse.client.html",
+                controller: "selectedApplicationController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
  
 
         // Student Profile
