@@ -406,6 +406,7 @@ module.exports= function(app, models){
 
   
 
+    
     function rateStudentByFaculty(req,res) {
 
         var sid = req.params.StudentID;
@@ -457,6 +458,7 @@ module.exports= function(app, models){
                 }
             );
     }
+
 
 
     function findUserById1(req, res){

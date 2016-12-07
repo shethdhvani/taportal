@@ -1,7 +1,7 @@
 
 
 
-<div class="container">
+<!--<div class="container">
     <h1>Appplications for course</h1>
     <div ng-if="model.success"
          class="alert alert-success">
@@ -11,12 +11,13 @@
     <div ng-if="model.error"
          class="alert alert-danger">
         {{model.error}}
-    </div>
+    </div> -->
 
     <div class="container-fluid">
-    {{apps}}
+
 
     main
+        {{apps}}
 
     <div class="table-responsive">
         <table class="table table-hover">
@@ -30,7 +31,7 @@
             <th>Been TA Semister</th>
             <th>Availability</th>
             <th>User</th>
-            <th>_v</th>
+
 
             <th>Current Rating</th>
             <th>Rate a Student</th>
@@ -44,10 +45,8 @@
     <td>{{ application.gradeObtained }}</td>
     <td>{{ application.beenTASemester }}</td>
     <td>{{ application.availability }}</td>
-    <td> <!--{{ application._user }} -->
-        <a href="#/UserInfo/{{application._user}}">
-        manognya </a></td>
-    <td>{{ application.__v }}</td>
+    <td>{{ application.username }}</td>
+
     <td> {{application.ratingvalue}} </td>
     <td>
         <button ng-if="1 > application.ratingvalue" ng-href="#" ng-click="model.rateStudent(application._user, 1)"  class="glyphicon glyphicon-star-empty"></button>
@@ -68,6 +67,12 @@
 
 
         </table>
+
+
+
+
+
+
     </div>
 
 
