@@ -12,161 +12,7 @@
         {{model.error}}
     </div>
 
-    <form novalidate name="model.myform">
-        <!----------------------------------------------------------------------------------------->
-            <label for="username">Username</label>
-            <input ng-model="model.user.username"
-                   type="text"
-                   class="form-control"
-                   id="username" placeholder="walice" required>
-            <!-- This field is not editable-->
-
-
-            <br/>
-
-        <!----------------------------------------------------------------------------------------->
-            <label for="email">Email address</label>
-            <input ng-model="model.user.email"
-                   type="email"
-                   name = "email"
-                   class="form-control"
-                   id="email"
-                   placeholder="alice.wonderland@unicorn.com" required>
-
-            <span   class="alert-class"
-                    ng-show="model.myform.email.$invalid">
-                    {{model.alert}}
-            </span>
-        <!----------------------------------------------------------------------------------------->
-            <br/>
-
-
-            <label for="first-name">First Name</label>
-            <input ng-model="model.user.firstName"
-                   type="text"
-                   name="firstName"
-                   class="form-control"
-                   id="first-name"
-                   placeholder="Alice" required>
-            <span   class="alert-class"
-                    ng-show="model.myform.firstName.$invalid">
-                    {{model.alert}}
-            </span>
-        <!----------------------------------------------------------------------------------------->
-            <br/>
-
-            <label for="last-name">Last Name</label>
-            <input ng-model="model.user.lastName"
-                   name="lastName"
-                   type="text"
-                   class="form-control"
-                   id="last-name"
-                   placeholder="Wonderland" required>
-
-            <span   class="alert-class"
-                    ng-show="model.myform.lastName.$invalid">
-                    {{model.alert}}
-            </span>
-
-        <!----------------------------------------------------------------------------------------->
-
-            <br/>
-
-
-
-            <label for="last-name">GPA</label>
-            <input ng-model="model.user.gpa"
-                   type="text"
-                   name="gpa"
-                   class="form-control"
-                   id="gpa"
-                   placeholder="Wonderland" required>
-
-            <span   class="alert-class"
-                    ng-show="model.myform.gpa.$invalid">
-                    {{model.alert}}
-            </span>
-            <br/>
-
-        <!------------------------------------------------------------------------>
-        <!-- Current Courses-->
-        <!-- Dropdown is populated from the database -->
-
-            <!--Dropdown to select courses-->
-                <div class="col-sm-8 col-md-8">
-                    <label for="username">Current Courses</label>
-                    <select type="string"
-                            class="form-control"
-                            placeholder="Course Name"
-                            ng-model="model.user.ccoursename">
-
-                        <!-- Dropdown courses-->
-                        <option ng-repeat="course in model.courses">{{course.coursename}}</option>
-                    </select>
-                </div>
-                <!--Button to add-->
-                <div class="col-sm-4 col-md-4">
-                    <label>Add Courses</label>
-                    <a ng-click = "model.addCurrentCourses(model.user)" class="btn btn-success btn-block">Add my courses</a>
-                </div>
-
-
-
-            <!-- Display Courses-->
-            <p ng-repeat="course in model.user.currentCourses">{{course}}
-                <a class="glyphicon glyphicon-remove makeblack"
-                   ng-click="model.deleteCurrentCourse(course)">
-
-                </a>
-            </p>
-
-
-
-            <br/>
-        <!----------------------------------------------------------------------------------------->
-        <!-- Already Taken Courses-->
-            <!-- Dropdown is populated from the database -->
-
-
-
-                <!--Dropdown to select courses-->
-                <div class="col-sm-8 col-md-8">
-                    <label for="username">Already Taken Courses</label>
-                    <select type="string"
-                            class="form-control"
-                            placeholder="Course Name"
-                            ng-model="model.user.coursename">
-
-                        <option ng-repeat="course in model.courses">{{course.coursename}}</option>
-                    </select>
-                </div>
-                <!--Button to add-->
-                <div class="col-sm-4 col-md-4">
-                    <label>Add Courses</label>
-                    <a ng-click = "model.addUserCourses(model.user)" class="btn btn-success btn-block">Add my courses</a>
-                </div>
-
-
-        <!----------------------------------------------------------------------------------------->
-            <!-- Display Courses-->
-            <p ng-repeat="course in model.user.coursesTaken">{{course}}
-                <a class="glyphicon glyphicon-remove makeblack"
-                   ng-click="model.deleteUserCourse(course)">
-
-                </a>
-            </p>
-
-
-
-
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <!----------------------------------------------------------------------------------------->
+    <!----------------------------------------------------------------------------------------->
     <!-- Resume Upload -->
     <b>Upload Resume:</b>
 
@@ -184,26 +30,172 @@
 
         <!-- Submit button -->
         <div class="col-sm-4 col-md-4">
-          <button type="submit"   class="btn btn-block btn-primary">Upload Resume</button>
+            <button type="submit"   class="btn btn-block btn-primary">Upload Resume</button>
         </div>
         <!--------------------->
     </form>
 
-        <!----------------------------------------------------------------------------------------->
     <br>
     <br>
     <br>
-        <!----------------------------------------------------------------------------------------->
-            <!-- Phone Number-->
 
 
-            <label for="last-name">Phone Number</label>
-            <input ng-model="model.user.phone"
-                   type="text"
-                   name="phone"
-                   class="form-control"
-                   id="phone"
-                   placeholder="617-447-9680">
+    <form novalidate name="model.myform">
+        <!----------------------------------------------------------------------------------------->
+        <label for="username">Username</label>
+        <input ng-model="model.user.username"
+               type="text"
+               class="form-control"
+               id="username" placeholder="walice" required>
+        <!-- This field is not editable-->
+
+
+        <br/>
+
+        <!----------------------------------------------------------------------------------------->
+        <label for="email">Email address</label>
+        <input ng-model="model.user.email"
+               type="email"
+               name = "email"
+               class="form-control"
+               id="email"
+               placeholder="alice.wonderland@unicorn.com" required>
+
+            <span   class="alert-class"
+                    ng-show="model.myform.email.$invalid">
+                    {{model.alert}}
+            </span>
+        <!----------------------------------------------------------------------------------------->
+        <br/>
+
+
+        <label for="first-name">First Name</label>
+        <input ng-model="model.user.firstName"
+               type="text"
+               name="firstName"
+               class="form-control"
+               id="first-name"
+               placeholder="Alice" required>
+            <span   class="alert-class"
+                    ng-show="model.myform.firstName.$invalid">
+                    {{model.alert}}
+            </span>
+        <!----------------------------------------------------------------------------------------->
+        <br/>
+
+        <label for="last-name">Last Name</label>
+        <input ng-model="model.user.lastName"
+               name="lastName"
+               type="text"
+               class="form-control"
+               id="last-name"
+               placeholder="Wonderland" required>
+
+            <span   class="alert-class"
+                    ng-show="model.myform.lastName.$invalid">
+                    {{model.alert}}
+            </span>
+
+        <!----------------------------------------------------------------------------------------->
+
+        <br/>
+
+
+
+        <label for="last-name">GPA</label>
+        <input ng-model="model.user.gpa"
+               type="text"
+               name="gpa"
+               class="form-control"
+               id="gpa"
+               placeholder="Wonderland" required>
+
+            <span   class="alert-class"
+                    ng-show="model.myform.gpa.$invalid">
+                    {{model.alert}}
+            </span>
+        <br/>
+
+        <!------------------------------------------------------------------------>
+        <!-- Current Courses-->
+        <!-- Dropdown is populated from the database -->
+
+        <!--Dropdown to select courses-->
+        <div class="col-sm-8 col-md-8">
+            <label for="username">Current Courses</label>
+            <select type="string"
+                    class="form-control"
+                    placeholder="Course Name"
+                    ng-model="model.user.ccoursename">
+
+                <!-- Dropdown courses-->
+                <option ng-repeat="course in model.courses">{{course.coursename}}</option>
+            </select>
+        </div>
+        <!--Button to add-->
+        <div class="col-sm-4 col-md-4">
+            <label>Add Courses</label>
+            <a ng-click = "model.addCurrentCourses(model.user)" class="btn btn-success btn-block">Add my courses</a>
+        </div>
+
+
+
+        <!-- Display Courses-->
+        <p ng-repeat="course in model.user.currentCourses">{{course}}
+            <a class="glyphicon glyphicon-remove makeblack"
+               ng-click="model.deleteCurrentCourse(course)">
+
+            </a>
+        </p>
+
+
+
+        <br/>
+        <!----------------------------------------------------------------------------------------->
+        <!-- Already Taken Courses-->
+        <!-- Dropdown is populated from the database -->
+
+
+
+        <!--Dropdown to select courses-->
+        <div class="col-sm-8 col-md-8">
+            <label for="username">Already Taken Courses</label>
+            <select type="string"
+                    class="form-control"
+                    placeholder="Course Name"
+                    ng-model="model.user.coursename">
+
+                <option ng-repeat="course in model.courses">{{course.coursename}}</option>
+            </select>
+        </div>
+        <!--Button to add-->
+        <div class="col-sm-4 col-md-4">
+            <label>Add Courses</label>
+            <a ng-click = "model.addUserCourses(model.user)" class="btn btn-success btn-block">Add my courses</a>
+        </div>
+
+
+        <!----------------------------------------------------------------------------------------->
+        <!-- Display Courses-->
+        <p ng-repeat="course in model.user.coursesTaken">{{course}}
+            <a class="glyphicon glyphicon-remove makeblack"
+               ng-click="model.deleteUserCourse(course)">
+
+            </a>
+        </p>
+
+
+        <!----------------------------------------------------------------------------------------->
+        <!-- Phone Number-->
+
+
+        <label for="last-name">Phone Number</label>
+        <input ng-model="model.user.phone"
+               type="text"
+               name="phone"
+               class="form-control"
+               id="phone"
+               placeholder="617-447-9680">
             <span   class="alert-class"
                     ng-show="model.myform.phone.$invalid">
                     {{model.alert}}
@@ -211,30 +203,30 @@
 
         <br>
         <!----------------------------------------------------------------------------------------->
-            <!-- About Myself-->
+        <!-- About Myself-->
 
-            <label for="last-name">About Myself</label>
-            <input ng-model="model.user.aboutMyself"
-                   type="text"
-                   class="form-control"
-                   id="About Myself"
-                   placeholder="Few Lines about myself">
+        <label for="last-name">About Myself</label>
+        <input ng-model="model.user.aboutMyself"
+               type="text"
+               class="form-control"
+               id="About Myself"
+               placeholder="Few Lines about myself">
 
         <!----------------------------------------------------------------------------------------->
 
-            <button ng-click="model.updateUser(model.user)"
-                    class="btn btn-primary btn-block" type="submit">
-                Update Profile
-            </button>
+        <button ng-click="model.updateUser(model.user)"
+                class="btn btn-primary btn-block" type="submit">
+            Update Profile
+        </button>
 
     </form>
-        <!----------------------------------------------------------------------------------------->
+    <!----------------------------------------------------------------------------------------->
 
     <a ng-click = "model.logout()"class="btn btn-danger btn-block">Logout</a>
-        <!----------------------------------------------------------------------------------------->
+    <!----------------------------------------------------------------------------------------->
     <a class="btn btn-danger btn-block "
        ng-click = "model.deleteUser()">un-register</a>
-        <!----------------------------------------------------------------------------------------->
+    <!----------------------------------------------------------------------------------------->
 
 </div>
 
