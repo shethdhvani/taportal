@@ -21,7 +21,7 @@
             <!-- Table Data--------->
             <tr ng-repeat="appname in model.applicationnames">
                 <td> {{appname.name}} </td>
-                <td>{{appname.applicationId}}</td>
+                <td>{{appname.status}}</td>
                 <td><button ng-click="model.deleteapplication(appname.name)" class="btn btn-block btn-danger">
                     Withdraw</button></td>
             </tr>

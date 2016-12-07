@@ -30,7 +30,8 @@
         }
         init();
 
-          
+        // Author : Sesha Sai
+
         function findApplicationForUser() {
             applicationsService
                 .findApplicationForUser(userId)
@@ -39,11 +40,12 @@
                     })
         }
 
+        // Author : Sesha Sai
         function createApplications(application){
+            application.status = "In Progress";
             applicationsService
                 .findApplicationForUser(userId)
                 .then(function (response) {
-
                     if(response.data.length==0 || response.data.length==1 ||response.data.length==2){
                         PositionService.findPositionIDByTitle(application._position)
                             .then(function(response){
@@ -55,8 +57,6 @@
                                     })
                             });
 
-
-
                     } else{
                         vm.updatedmessage = "Maximum applications for course = 3. please withdraw un-required application!";
                     }
@@ -64,6 +64,7 @@
 
         }
 
+        // Author : Sesha Sai
         function findAllSemesters() {
             CoursesandSemestersService
                 .findAllSemesters()
@@ -73,6 +74,7 @@
                 })
         }
 
+        // Author : Sesha Sai
         function findAllCourses() {
             CoursesandSemestersService
                 .findAllCourses()
@@ -82,6 +84,7 @@
                 })
         }
 
+        // Author : Sesha Sai
         function findAllPositions() {
             PositionService
                 .findAllPositions()
@@ -92,8 +95,6 @@
                         var temp = pos[i].deadline;
                         pos[i].deadline = new Date(temp);
                     }
-
-
                     vm.positions = pos;
                     vm.positionCount = vm.positions.length;
 
@@ -101,7 +102,7 @@
         }
 
 
-
+        // Author : Sesha Sai
         function logout() {
             UserService
                 .logout()
