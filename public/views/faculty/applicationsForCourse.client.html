@@ -1,18 +1,4 @@
 
-
-
-<!--<div class="container">
-    <h1>Appplications for course</h1>
-    <div ng-if="model.success"
-         class="alert alert-success">
-        {{model.success}}
-    </div>
-
-    <div ng-if="model.error"
-         class="alert alert-danger">
-        {{model.error}}
-    </div> -->
-
     <div class="container-fluid">
     <h1>Applications for {{model.Position.course}}</h1>
 
@@ -22,21 +8,38 @@
             <!-- Table header--------->
             <!-- Header for Position-->
             <!------------------------->
-            <th>Priority</th>
-
-            <th>Previously Taken</th>
-            <th>Grade Obtained</th>
-            <th>Been TA Semister</th>
-            <th>Availability</th>
+            <th><a ng-click="model.orderByField='priority';
+                             model.reverseSort = !model.reverseSort">
+                Priority
+            </a>
+            <th><a ng-click="model.orderByField='previouslyTaken';
+                             model.reverseSort = !model.reverseSort">
+                Previously Taken
+            </a>
+            <th><a ng-click="model.orderByField='gradeObtained';
+                             model.reverseSort = !model.reverseSort">
+                Grade Obtained
+            </a>
+            <th><a ng-click="model.orderByField='beenTASemester';
+                             model.reverseSort = !model.reverseSort">
+                Been TA semester
+            </a>
+            <th><a ng-click="model.orderByField='availability';
+                             model.reverseSort = !model.reverseSort">
+                Availability
+            </a>
             <th>User</th>
 
 
-            <th>Current Rating</th>
+            <th><a ng-click="model.orderByField='ratingvalue';
+                             model.reverseSort = !model.reverseSort">
+                Current Rating
+            </a>
             <th>Rate a Student</th>
 
 
 
-<tr ng-repeat="application in apps">
+<tr ng-repeat="application in apps | orderBy:model.orderByField : model.reverseSort">
     <td>{{ application.priority }}</td>
 
     <td>{{ application.previouslyTaken }}</td>

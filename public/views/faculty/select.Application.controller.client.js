@@ -13,6 +13,11 @@
     function selectedApplicationController($routeParams, $location, UserService, $rootScope,PositionService, applicationsService) {
         var vm = this;
 
+
+        // Author: Srivatsav | for sorting
+        vm.orderByField = 'application';
+        vm.reverseOrder = false;
+
         vm.rateStudent = rateStudent;
         //  vm.findAverage = findAverage;
         var faculty;
