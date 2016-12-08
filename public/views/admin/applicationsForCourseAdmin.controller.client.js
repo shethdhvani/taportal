@@ -19,7 +19,10 @@
 
         //vm.getApplications = getApplications;
 
+        vm.orderByField = 'application';
+        vm.reverseOrder = false;
 
+        
         vm.userId = $rootScope.currentUser._id;
         vm.logout = logout;
         var userId = $rootScope.currentUser._id;
