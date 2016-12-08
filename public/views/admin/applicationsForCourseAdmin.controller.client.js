@@ -22,6 +22,7 @@
         vm.orderByField = 'application';
         vm.reverseOrder = false;
 
+
         
         vm.userId = $rootScope.currentUser._id;
         vm.logout = logout;
@@ -66,6 +67,8 @@
 
             console.log(Appid);
             console.log(decision);
+
+           
 
             applicationsService
                 .GiveDecisionforApp(Appid, decision)
