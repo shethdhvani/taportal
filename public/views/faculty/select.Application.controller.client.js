@@ -13,6 +13,11 @@
     function selectedApplicationController($routeParams, $location, UserService, $rootScope,PositionService, applicationsService) {
         var vm = this;
 
+
+        // Author: Srivatsav | for sorting
+        vm.orderByField = 'application';
+        vm.reverseOrder = false;
+
         vm.rateStudent = rateStudent;
         //  vm.findAverage = findAverage;
         var faculty;
@@ -42,7 +47,7 @@
                 .findPositionById(vm.posId1)
                 .then(function (response) {
                     vm.Position = response.data;
-
+                    
                     getApplications(vm.Position);
                 });
 
@@ -64,11 +69,7 @@
                 .then(
                     function (response) {
 
-console.log(response);
-
-
-
-                        var  rating1 = response.data.rating;
+                    var  rating1 = response.data.rating;
                         //if(response.data.rating == undefined){
                         //    rating1 = [];
                         //}
@@ -91,12 +92,12 @@ console.log(response);
                         ratingAll.push(ratingNew);
 
 
-console.log(ratingAll);
+
 
 
                         var ii = {
                             array12: ratingAll
-                        }
+                        };
 
 
 
