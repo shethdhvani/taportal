@@ -551,6 +551,36 @@ done();
         });
     });
 
+    //Author: Dhvani
+    //Find user by Id1
+    it('should find user by userid1', function (done) {
+        chai.request(server)
+            // .get('/api/findallusers')
+            // .end(function(err, res){
+            //     chai.request(server)
+                    .get('/api/user1/'+ "?username=zxc_test1")
+                    .end(function (error, response) {
+                        response.should.have.status(200);
+                        done();
+                    // })
+            });
+    });
+
+    //Author: Dhvani
+    //Rate student by faculty
+    it('should rate student by faculty', function (done) {
+        chai.request(server)
+            .get('/api/findallusers')
+            .end(function(err, res){
+                chai.request(server)
+                    .put('/api/rateStudent/'+ res.body[0]._id)
+                    .end(function (error, response) {
+                        response.should.have.status(200);
+                        done();
+                    })
+            });
+    });
+
 
     //Author: Dhvani
     //Deleting user
