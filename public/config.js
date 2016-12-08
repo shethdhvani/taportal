@@ -11,7 +11,30 @@
     function Config($routeProvider) {
         $routeProvider
 
-        //anvita
+
+        //am
+
+            .when("/ChooseSubject",{
+                templateUrl :"views/admin/choosecourses.view.client.html",
+                controller: "ChooseCourseController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+
+            .when("/applicationsForCourseAdmin/:posId",{
+                templateUrl :"views/admin/applicationsForCourseAdmin.client.html",
+                controller: "ShowApplicationController",
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
+            })
+
+
+            //anvita
 
            .when("/applicationsForCource/:posId",{
                 templateUrl :"views/faculty/applicationsForCourse.client.html",

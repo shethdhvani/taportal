@@ -15,10 +15,20 @@ module.exports = function () {
         deleteApplication: deleteApplication,
         findApplicationForUser: findApplicationForUser,
         findApplicationById: findApplicationById,
-        findApplicationsForPosition: findApplicationsForPosition
+        findApplicationsForPosition: findApplicationsForPosition,
+        GiveDecisionforApp:GiveDecisionforApp
     };
 
     return api;
+
+
+    function GiveDecisionforApp(appId, decision) {
+        return Application
+            .update({_id: appId},{
+                $set: { status: decision
+                }}
+            );
+    }
 
     function createApplication(application) {
         return  Application.create(application);
