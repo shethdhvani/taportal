@@ -155,7 +155,14 @@
                                  //   console.log(rateval);
                                     //var app1 = {};
                                     var   app1 = {
-
+                                        "avgRating" :     apps1[j].avgRating       ,
+                                        "gpa"  :          apps1[j].gpa             ,
+                                        "coursesTaken" :  apps1[j].coursesTaken    ,
+                                        "currentCourses": apps1[j].currentCourses  ,
+                                        "email" :         apps1[j].email           ,
+                                        "phone"  :        apps1[j].phone           ,
+                                        "resumeURL" :     apps1[j].resumeURL       ,
+                                        "resumeName" :    apps1[j].resumeName      ,
                                         "_id":apps1[j]._id,"priority":apps1[j].priority,"_position":apps1[j]._position,
                                         "previouslyTaken":apps1[j].previouslyTaken,"gradeObtained":apps1[j].gradeObtained,
                                         "beenTASemester":apps1[j].beenTASemester,"availability": apps1[j].availability,
