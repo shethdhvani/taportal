@@ -42,7 +42,7 @@ module.exports = function () {
         delete application._id;
         return Application
             .update({_id: applicationId},{
-                $set: { _position: application._position,
+                $set: {
                     priority : application.priority,
                     previouslyTaken : application.previouslyTaken,
                     gradeObtained : application.gradeObtained,
